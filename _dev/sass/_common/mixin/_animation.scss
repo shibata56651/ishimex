@@ -1,0 +1,30 @@
+@keyframes spotlightAnimation {
+  0% {
+    transform: rotate(25deg);
+  }
+  100% {
+    transform: rotate(-20deg);
+  }
+}
+
+@keyframes loading {
+  0% {
+    background: radial-gradient(circle, rgba(0, 0, 0, .4), rgba(0, 0, 0, .4) 100px, rgba(0, 0, 0, .4) 100px, rgba(0, 0, 0, .4));
+  }
+
+  100% {
+    background: radial-gradient(circle, transparent, transparent 100px, rgba(0, 0, 0, .4) 100px, rgba(0, 0, 0, .4));
+  }
+}
+
+@keyframes loadingFinish {
+  0% {
+    opacity: 1;
+  }
+  40% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}

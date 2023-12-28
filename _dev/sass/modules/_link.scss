@@ -1,0 +1,151 @@
+.link-bnr-a {
+  ul {
+    display: flex;
+    flex-direction: column;
+
+    > li {
+      margin: 0 auto;
+
+      a {
+        > .item {
+          position: relative;
+          transition: .3s;
+
+          img {
+            transition: .3s;
+          }
+        }
+
+        @include hover() {
+          > .item {
+            opacity: .7;
+          }
+        }
+      }
+    }
+  }
+
+  @include rwd(bpTab, below) {
+    ul {
+      flex-direction: row;
+      justify-content: center;
+
+      li {
+        margin: 0 0 0 16px;
+
+        &:first-of-type {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  @include rwd(bpTab, above) {
+    ul {
+      li {
+        margin-top: 24px;
+
+        &:first-of-type {
+          margin-top: 0;
+        }
+      }
+    }
+  }
+
+  @include rwd(bpSp, below) {
+    .str-side-contents & {
+      margin-bottom: 20px;
+    }
+  }
+}
+
+.link-anchor-a {
+  width: 100%;
+
+  li {
+    > a {
+      position: relative;
+      display: inline-block;
+      padding: 0 0 0 24px;
+      color: $color-txt-02;
+      text-decoration: none;
+
+      @include hover {
+          color: $color-strong-01;
+          text-decoration: underline;
+      }
+    }
+
+    + li {
+        margin-top: 6px;
+    }
+  }
+
+  @include rwd(bpSp, below) {
+    li {
+      > a {
+        padding: 0 0 0 20px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.link-list-a {
+  margin: 24px 0 0;
+
+  > ul {
+    > li {
+      &._no-icon {
+        > a {
+          &::after {
+            display: none;
+          }
+        }
+      }
+
+      + li {
+          margin-top: 8px;
+      }
+
+      > a {
+        position: relative;
+        color: $color-txt-02;
+        text-decoration: none;
+
+        > .icon-arrow-e {
+          transition: .3s;
+        }
+
+        @include hover {
+          color: $color-strong-01;
+          text-decoration: underline;
+
+          > .icon-arrow-e {
+            transform: translate(10px, -6px);
+          }
+        }
+      }
+    }
+  }
+
+  @include rwd(bpSp, below) {
+    > ul {
+      > li {
+        font-size: 14px;
+
+        > a {
+          &::after {
+            transform: translate(4px, 0);
+          }
+
+          @include hover {
+            &::after {
+              transform: translate(6px, 0);
+            }
+          }
+        }
+      }
+    }
+  }
+}

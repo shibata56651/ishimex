@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+// Breakpoint
+$bpPc: 1275px;
+$bpTab: 1024px;
+$bpSp: 768px;
+
+// Font
+$font-01: "Noto Sans", sans-serif;
+$font-02: "Open Sans", sans-serif;
+
+$weight-normal: 400;
+$weight-semibold: 600;
+$weight-bold: 700;
+
+// Color: Sub
+$color-01: #D6D6D6;
+$color-02: #F2F2F2;
+$color-03: #666;
+$color-04: #111;
+
+// Color: Text
+$color-txt-01: #fff;
+$color-txt-02: #333;
+$color-txt-03: #666;
+
+// Color: Btn
+$color-gradient-01: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(17,17,17,1) 100%);
+$color-gradient-02: linear-gradient(90deg, rgba(17,17,17,1) 0%, rgba(51,51,51,1) 100%);
+
+// Color: Border
+$color-bd-01: #ddd;
+$color-bd-02: #ccc;
+$color-bd-03: #aaa;
+
+// Color: Other
+$color-strong-01: #E60027;

@@ -1,0 +1,195 @@
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+
+  &.title {
+    font-weight: $weight-bold;
+  }
+
+  &.strong {
+    color: $color-strong-01;
+  }
+
+  &.quote-text {
+    position: relative;
+    margin: 0 -18px 0 -21px;
+    padding: 0 21px;
+    color: $color-txt-03;
+
+    > :first-child {
+        margin-top: 0;
+    }
+
+    &::before,
+    &::after {
+        display: block;
+        position: absolute;
+        font-size: 30px;
+        line-height: 1;
+    }
+
+    + .ltalic-text {
+      margin-top: 8px;
+    }
+
+    @include rwd(bpSp, below) {
+      + .ltalic-text {
+        margin-top: 12px;
+      }
+    }
+  }
+
+  &.text-lead-a {
+    margin: 0 0 32px;
+    color: $color-strong-01;
+    text-align: center;
+
+    > b {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      font-size: 44px;
+
+      > span {
+        &:not(.text) {
+          margin: 0 6px;
+          font-size: 30px;
+          font-weight: $weight-normal;
+        }
+      }
+    }
+
+    @include rwd(1024px, below) {
+      > b {
+        flex-direction: column;
+
+        > span {
+          &:not(.text) {
+            margin: 0;
+          }
+        }
+      }
+    }
+
+    @include rwd(bpSp, below) {
+      margin-bottom: 24px;
+
+      > b {
+        font-size: 24px;
+
+        > span {
+          &:not(.text) {
+            font-size: 18px;
+            font-weight: $weight-bold;
+          }
+        }
+      }
+    }
+  }
+
+  &.text-em-a {
+    font-size: 16px;
+    text-align: center;
+    line-height: 1.5;
+
+    + .text-em-a {
+      margin-top: 32px;
+    }
+
+  @include rwd(1024px, below) {
+    text-align: left;
+    font-feature-settings: normal;
+
+      > br {
+        display: none;
+      }
+    }
+
+  @include rwd(bpSp, below) {
+    font-size: 16px;
+
+      + .text-em-a {
+        margin-top: 22px;
+      }
+    }
+  }
+
+  .link-b {
+    position: relative;
+    color: $color-txt-02;
+    text-decoration: none;
+
+    > .icon-arrow-e {
+      transition: .3s;
+  }
+
+    @include hover {
+      color: $color-strong-01;
+      text-decoration: underline;
+
+      > .icon-arrow-e {
+          transform: translate(10px, -6px);
+      }
+    }
+
+    @include rwd(bpSp, below) {
+      &::after {
+        transform: translate(4px, 0);
+      }
+
+      @include hover {
+        &::after {
+          transform: translate(6px, 0);
+        }
+      }
+    }
+  }
+
+  @include rwd(bpSp, below) {
+    font-size: 14px;
+  }
+}
+
+.ltalic-text {
+  color: $color-txt-03;
+  text-align: right;
+  margin-top: 8px;
+
+  > cite {
+      font-style: italic;
+  }
+}
+
+.details {
+  margin-top: 6px;
+
+  .item {
+    color: $color-03;
+    font-size: 14px;
+    line-height: 1.6;
+
+    + .item {
+      margin-left: 16px;
+    }
+
+    .js-ranking-item & {
+      .str-main-contents &,
+      ._top & {
+        + .item {
+          display: block;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
+@include rwd(bpSp, below) {
+  .item {
+    + .item {
+      margin-left: 8px;
+    }
+  }
+}
