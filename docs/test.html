@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>dummyTitle</title>
+<meta name="description" content="xxxxxxx">
+<link rel="stylesheet" href="./common/css/main.css">
+<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+<!-- <script src="./common/js/main.js" defer></script> -->
+</head>
+
+<body>
+<header>
+<div class="h-inner">
+<div class="h-logo">
+<img src="/images/test/header1.png" alt="株式会社 イシメックス">
+</div><!-- h-logo -->
+
+<nav class="h-nav">
+<ul class="h-nav-list">
+<li>会社概要</li>
+<li>サービス・製品</li>
+<li>設備</li>
+<li>お問い合わせ</li>
+</ul>
+</nav>
+</div><!-- h-inner -->
+</header>
+
+
+
+<main class="str-contents-wrapper">
+<div class="mv">
+<div class="mv-txt">
+<p>ダミーテキスト<br>ダミーテキスト</p>
+</div><!-- mv-txt -->
+</div><!-- mv -->
+
+
+
+<div class="content-fluid">
+<div class="content-inner">
+<div class="t-lead">
+<div class="t-lead-inner fade-in">
+<p class="t-lead-title">より新しく、より早く</p>
+<p class="t-lead-txt">最適ソリューションとして提供することに<span class="break">挑戦しています。</span></p>
+</div><!-- t-lead-inner -->
+</div><!-- t-lead -->
+
+
+
+<h2 class="hdg-l2 slide-in"><span class="hdg-l2_sub">Information</span><span class="hdg-l2_main">お知らせ</span></h2>
+<div class="t-info">
+<ul class="list-info fade-in">
+<li>YYYY.MM.DD お知らせお知らせお知らせ</li>
+<li>YYYY.MM.DD お知らせお知らせお知らせお知らせお知らせお知らせお知らせお知らせお知らせ</li>
+<li>YYYY.MM.DD お知らせお知らせお知らせお知らせお知らせお知らせお知らせ</li>
+<li>YYYY.MM.DD お知らせお知らせお知らせお知らせお知らせお知らせお知らせお知らせお知らせお知らせ</li>
+</ul>
+</div><!-- t-info -->
+
+
+
+<h2 class="hdg-l2 slide-in"><span class="hdg-l2_sub">Company</span><span class="hdg-l2_main">会社概要</span></h2>
+<div class="media-lyt fade-in">
+<div class="media-lyt-inner">
+<div class="media-lyt-desc">
+<p>ＦＡ設備、機械の通信システムを含めたシステム設計及びパソコン、マイコン制御、シーケンス制御から制御盤、装置、プリント基板の実装組立並びに現地据付工事から調整まで、電装設備工事のトータルエンジニアリングに対応します。</p>
+</div><!-- media-lyt-desc -->
+
+<div class="media-lyt-item">
+<img src="/images/test/canvas1.jpg">
+</div><!-- media-lyt-item -->
+</div><!-- media-lyt-inner -->
+</div><!-- media-lyt -->
+</div><!-- content-inner -->
+</div><!-- content-fluid -->
+</main>
+
+<footer>
+
+</footer>
+<script>
+(() => {
+const elem = document.querySelectorAll(".fade-in");
+window.addEventListener("scroll", ()=> {
+    for(let i = 0; i < elem.length; i++) {
+        const rect = elem[i].getBoundingClientRect().top;
+        const scroll = window.pageYOffset || document.documentElement.scrollTop;
+        const offset = rect + scroll;
+        const windowHeight = window.innerHeight;
+
+        if(scroll > offset - windowHeight + 150){
+            elem[i].classList.add("scroll-in");
+        }
+    }
+});
+})();
+
+(() => {
+const elem = document.querySelectorAll(".slide-in");
+console.log(elem);
+window.addEventListener("scroll", ()=> {
+    for(let i = 0; i < elem.length; i++) {
+        const rect = elem[i].getBoundingClientRect().top;
+        const scroll = window.pageYOffset || document.documentElement.scrollTop;
+        const offset = rect + scroll;
+        const windowHeight = window.innerHeight;
+
+        if(scroll > offset - windowHeight + 150){
+            elem[i].classList.add("scroll-in");
+        }
+    }
+});
+})();
+</script>
+</body>
+</html>
