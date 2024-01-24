@@ -1,14 +1,11 @@
+@use "definition/" as *;
 
-/* Base */
-@use '_base';
+/* Definition */
+@use "definition";
 
-/* Layout */
-@use '_lyt/header';
-@use '_lyt/footer';
-@use '_lyt/wrapper';
-@use '_lyt/icon';
+/* Organism */
+@use "organism";
 
 /* Module */
-@use '_modules';
-
-@use '_js';
+@use "modules";
+@use "js";
