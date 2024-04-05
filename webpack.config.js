@@ -6,8 +6,7 @@ const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 
 const entry = {
-  'main': './_dev/js/main.js',
-  'main.css': './_dev/sass/main.scss',
+  'main': './_dev/js/main.ts',
 };
 
 const cssJsFunc = (mode) => {
@@ -30,8 +29,8 @@ const cssJsFunc = (mode) => {
     rules: [
       {
         // 拡張子 .js の場合
-        // test: /\.ts$/,
-        test: /\.js$/,
+        test: /\.ts$/,
+        // test: /\.js$/,
         exclude: /node_modules/,
         use: [
           {
@@ -46,45 +45,9 @@ const cssJsFunc = (mode) => {
               ]
             }
           },
-          // {
-          //   // Babel を利用する
-          //   loader: 'ts-loader',
-          // },
-        ],
-      },
-      {
-        test: /\.(png|jpe?g|gif|svg)$/i,
-        type: 'asset/resource',
-        generator: {
-          filename: './common/images/[name][ext]'
-        }
-      },
-      {
-        // 処理対象ファイル
-        test: /\.scss$/,
-        exclude: /node_modules/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
           {
-            loader: 'sass-loader',
-            options: {
-              implementation: require('sass'),
-            },
-          },
-          {
-            loader: 'postcss-loader',
-            options: {
-              postcssOptions: {
-                // sourceMap: true,
-                plugins: [
-                  require('autoprefixer')({
-                    grid: true
-                  }),
-                  require('cssnano'),
-                ],
-              },
-            },
+            // Babel を利用する
+            loader: 'ts-loader',
           },
         ],
       },

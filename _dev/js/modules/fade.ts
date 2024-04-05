@@ -1,9 +1,11 @@
 export class fade {
+  o: { activeFadeClass: string, activeSlideLeftClass: string, activeSlideRightClass: string };
+  element: HTMLElement;
   /**
    * @param  {Element} element rootとなる要素
    * @returns void
    */
-  constructor(element = {}) {
+  constructor(element: HTMLElement) {
     const defaultOptions = {
       activeFadeClass: 'is-fade',
       activeSlideLeftClass: 'is-slide-left',

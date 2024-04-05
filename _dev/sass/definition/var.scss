@@ -7,33 +7,41 @@ $bpTab: 1024px;
 $bpSp: 768px;
 
 // Font Family
-$font-01: "Noto Sans", sans-serif;
+$font-01: "Noto Sans JP", sans-serif;
 $font-02: "Open Sans", sans-serif;
 
 // Font Weight
+$weight-light: 300;
 $weight-normal: 400;
+$weight-medium: 500;
 $weight-semibold: 600;
 $weight-bold: 700;
 
+// Zindex
+$index-first: 1;
+$index-header: 100;
+
+// Color: Main
+$color-white: #fff;
+$color-black: #222;
+$color-main: #0433e3;
+
 // Color: Sub
-$color-01: #d6d6d6;
-$color-02: #f2f2f2;
-$color-03: #666;
-$color-04: #111;
+$color-sub: #6883e8;
+$color-sub-02: #020024;
+$color-sub-03: #032fe8;
+
+// Color: bg
+$color-bg: #f1f1f1;
 
 // Color: Text
-$color-txt-01: #fff;
-$color-txt-02: #333;
-$color-txt-03: #666;
+$color-text-01: #fff;
+$color-text-02: #333;
+$color-text-03: #666;
 
 // Color: Btn
 $color-gradient-01: linear-gradient(90deg, rgb(0 0 0 / 100%) 0%, rgb(17 17 17 / 100%) 100%);
 $color-gradient-02: linear-gradient(90deg, rgb(17 17 17 / 100%) 0%, rgb(51 51 51 / 100%) 100%);
-
-// Color: Border
-$color-bd-01: #ddd;
-$color-bd-02: #ccc;
-$color-bd-03: #aaa;
 
 // Color: Other
 $color-strong-01: #e60027;

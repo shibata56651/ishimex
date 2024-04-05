@@ -1,12 +1,24 @@
 import {setTabIndex, removeTabIndex} from "../utility/tabIndex";
 
-export class modal {
+export class Modal {
+  o: { activeClass: string, focusElem: string };
+  element: HTMLElement;
+  modalOverlay: HTMLElement;
+  targetElm: HTMLElement | null;
+  modalContent: NodeListOf<Element>;
+  disableItem: undefined;
+  targetContent: HTMLElement | null;
+  topElm: number | null;
+  activeModalId: string;
+  closeBtn: Element | null;
+  youtube: any;
+
   /**
    * @param  {Element} element rootとなる要素
    * @param  {Element} modalOverlay モーダル起動時の黒背景
    * @returns void
    */
-  constructor(element, modalOverlay = {}) {
+  constructor(element: HTMLElement, modalOverlay: HTMLElement) {
     const defaultOptions = {
       activeClass: 'is-active',
       focusElem: 'a, input, button, option',
@@ -21,7 +33,7 @@ export class modal {
     this.targetContent = null;
     this.topElm = null;
     this.activeModalId = '';
-    this.closeBtn = '';
+    this.closeBtn = null;
     this.youtube;
 
     this.init();
@@ -47,7 +59,7 @@ export class modal {
    *
    * @param  {object} targetElm 押下したa要素のhref属性と一致するid持つ要素
    */
-  activeModal(targetElm) {
+  activeModal(targetElm: HTMLElement) {
     const modalFocusItems = targetElm.querySelectorAll(this.o.focusElem);
 
     this.modalOverlay.classList.add(this.o.activeClass);
@@ -59,7 +71,7 @@ export class modal {
     document.body.style.top = `-${this.topElm}px`;
 
     for (const modalFocusItem of modalFocusItems) {
-      modalFocusItem.tabIndex = 0;
+      modalFocusItem.setAttribute('tabIndex', '0');
     }
   };
 
@@ -70,35 +82,38 @@ export class modal {
    * @param  {MouseEvent} e クリックした要素
    * @returns void
    */
-  clickHandler(e) {
+  clickHandler(e: MouseEvent) {
     const href = this.element.getAttribute('href');
 
-    this.targetContent = document.getElementById(href.substring(1));
-    this.closeBtn = this.targetContent.querySelector('.js-modal-close');
-    this.topElm = window.pageYOffset;
+      this.targetContent = href ? document.getElementById(href.substring(1)) : null;
 
-    // youtube動画がある場合、youtube APIを有効
-    if (this.targetContent.querySelector('.lyt-movie-a > .lyt-movie-inner > iframe')) {
-      this.youtube = this.targetContent.querySelector('.lyt-movie-a > .lyt-movie-inner > iframe');
-      const dataSrcFlg = this.youtube.hasAttribute('data-src');
-      if (dataSrcFlg && !this.youtube.src) {
-        this.youtube.src = this.youtube.dataset.src;
+      if (this.targetContent) {
+        this.closeBtn = this.targetContent.querySelector('.js-modal-close');
+        this.topElm = window.scrollY;
+
+        // youtube動画がある場合、youtube APIを有効
+        if (this.targetContent.querySelector('.lyt-movie-a > .lyt-movie-inner > iframe')) {
+          this.youtube = this.targetContent.querySelector('.lyt-movie-a > .lyt-movie-inner > iframe');
+          const dataSrcFlg = this.youtube.hasAttribute('data-src');
+          if (dataSrcFlg && !this.youtube.src) {
+            this.youtube.src = this.youtube.dataset.src;
+          }
+
+          const srcAttr = dataSrcFlg ? 'data-src' : 'src';
+          let srcTxt = this.youtube.getAttribute(srcAttr);
+          const separator = srcTxt.indexOf('?') !== -1 ? '&' : '?';
+
+          if (srcTxt.indexOf('enablejsapi=1') === -1) {
+            srcTxt += `${separator}enablejsapi=1`;
+
+            this.youtube.setAttribute(srcAttr, srcTxt);
+          }
+
+        this.activeModalId = this.targetContent.id;
+        e.preventDefault();
+        this.activeModal(this.targetContent);
       }
-
-      const srcAttr = dataSrcFlg ? 'data-src' : 'src';
-      let srcTxt = this.youtube.getAttribute(srcAttr);
-      const separator = srcTxt.indexOf('?') !== -1 ? '&' : '?';
-
-      if (srcTxt.indexOf('enablejsapi=1') === -1) {
-        srcTxt += `${separator}enablejsapi=1`;
-
-        this.youtube.setAttribute(srcAttr, srcTxt);
       }
-    }
-
-    this.activeModalId = this.targetContent.id;
-    e.preventDefault();
-    this.activeModal(this.targetContent);
   };
 
 
@@ -106,12 +121,11 @@ export class modal {
    * モーダルを非活性にする処理
    */
   removeModal() {
-    const targetHook = document.querySelector(`[href="#${this.activeModalId}"]`);
+    const targetHook: HTMLElement | null = document.querySelector(`[href="#${this.activeModalId}"]`);
 
     document.body.classList.remove('is-modal-fixed');
     document.body.style.top = '';
-    console.log(this.topElm)
-    window.scrollTo(0, this.topElm);
+    this.topElm && window.scrollTo(0, this.topElm);
 
     removeTabIndex();
     if (targetHook) {
@@ -134,9 +148,9 @@ export class modal {
   /**
    * escキーが押された際に、モーダルを削除
    *
-   * @param  {object} event ESCキーのイベント
+   * @param  {KeyboardEvent} event ESCキーのイベント
    */
-  escKeyEvent(event) {
+  escKeyEvent(event: KeyboardEvent) {
     for (const modalItem of this.modalContent) {
       if (modalItem.classList.contains(this.o.activeClass)) {
         const keyEvent = event.key;

@@ -6,16 +6,231 @@
 <title>株式会社イシメックス | トップページ</title>
 <meta name="description" content="xxxxxxx">
 <link rel="stylesheet" href="./common/css/main.css">
-<link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+<link rel="stylesheet" href="./common/css/splide.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
 <script src="./common/js/main.js" defer></script>
 </head>
 
 <body>
-<main class="str-contents-wrapper">
-  <div class="top-mv">
-    <span class="top-mv__lead-text">ダミーテキスト</span>
-    <video src="./mv.mp4"></video>
-  </div><!-- /.top__mv -->
+<main class="str-contents-wrapper js-tabindex-target">
+  <section class="splide" aria-label="トップページのカルーセル">
+      <div class="splide__track">
+        <ul class="splide__list">
+          <li class="splide__slide">
+            <img class="splide__img" src="/images/test/AdobeStock_322922210_Preview.jpeg">
+          </li>
+          <li class="splide__slide">
+            <img class="splide__img" src="/images/test/AdobeStock_452146137_Preview.jpeg">
+          </li>
+          <li class="splide__slide">
+            <img class="splide__img" src="/images/test/AdobeStock_519319951_Preview.jpeg">
+          </li>
+        </ul>
+      </div><!-- /.splide__track -->
+
+      <div class="splide__progress">
+        <div class="splide__progress__bar">
+        </div>
+      </div><!-- /.splide__progress -->
+
+    <button class="splide__toggle" type="button">
+      <span class="splide__toggle__play">Play</span>
+      <span class="splide__toggle__pause">Pause</span>
+    </button>
+  </section>
+
+  <section class="section__lead section__base">
+    <div class="lead-contents">
+      <span class="lead-em"><em>より新しく、より早く</em></span>
+      <span class="lead-text">最適ソリューションとして提供することに<br>挑戦しています。</span>
+    </div><!-- /.lead-contents -->
+  </section>
+
+  <section class="section__base">
+    <div class="top-company-lyt">
+      <div class="top-company-lyt__img-content">
+        <img src="/images/top-company.jpg" alt="">
+      </div><!-- /.top-company-lyt__img-content -->
+      <div class="top-company-lyt__text-content">
+        <h2 class="top__hdg">会社概要<span class="top__hdg--en">company</span></h2>
+        <p class="top-company-lyt__text">FA設備、機械の通信システムを含めたシステム設計およびパソコン、マイコン制御、シーケンス制御から制御版、装置、プリント基盤の実装組み立て並びに現地据付工事から調整まで、電装設備工事のトータルエンジニアリングに対応いています。</p>
+
+        <span class="top-company-lyt__link"><a href="#">会社概要について</a></span>
+      </div><!-- /.top-company-lyt__text-content -->
+    </div><!-- /.top-company -->
+  </section>
+
+  <section class="section__base">
+    <h2 class="top__hdg">お知らせ<span class="top__hdg--en">news</span></h2>
+
+    <div class="news-desc">
+      <dl>
+        <dt>
+          <div class="news-category-list">
+            <ul class="news-category-list__wrap" role="tablist">
+              <li id="tab-1" class="news-category-list__list js-tab-target is-active"><button class="news-category-list__button" type="button" role="tab" aria-controls="tabpanel-1">プレリリース</button></li>
+              <li id="tab-2" class="news-category-list__list js-tab-target"><button class="news-category-list__button" type="button" role="tab" aria-controls="tabpanel-2">企業情報</button></li>
+              <li id="tab-3" class="news-category-list__list js-tab-target"><button class="news-category-list__button" type="button" role="tab" aria-controls="tabpanel-3">イベント情報</button></li>
+            </ul>
+          </div><!-- /.news-category-list -->
+        </dt>
+        <dd>
+          <div id="tabpanel-1" role="tabpanel" aria-labelledby="tab-1">
+            <div class="news-contents-list">
+              <ul>
+                <li class="news-contents-list__list">
+                  <div class="news-contents-list__contents">
+                    <div class="news-contents-list__date">
+                      <span class="news-contents-list__date-text">YYYY.MM.DD</span>
+                    </div><!-- /.news-contents-list__date -->
+
+                    <div class="news-contents-list__content">
+                      <span class="news-contents-list__content-text">お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ</span>
+                    </div><!-- /.news-contents-list__content -->
+                  </div><!-- /.news-contents-list__contents -->
+                </li>
+                <li class="news-contents-list__list">
+                  <div class="news-contents-list__contents">
+                    <div class="news-contents-list__date">
+                      <span class="news-contents-list__date-text">YYYY.MM.DD</span>
+                    </div><!-- /.news-contents-list__date -->
+
+                    <div class="news-contents-list__content">
+                      <span class="news-contents-list__content-text">お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ</span>
+                    </div><!-- /.news-contents-list__content -->
+                  </div><!-- /.news-contents-list__contents -->
+                </li>
+                <li class="news-contents-list__list">
+                  <div class="news-contents-list__contents">
+                    <div class="news-contents-list__date">
+                      <span class="news-contents-list__date-text">YYYY.MM.DD</span>
+                    </div><!-- /.news-contents-list__date -->
+
+                    <div class="news-contents-list__content">
+                      <span class="news-contents-list__content-text">お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ、お知らせ</span>
+                    </div><!-- /.news-contents-list__content -->
+                  </div><!-- /.news-contents-list__contents -->
+                </li>
+              </ul>
+            </div><!-- /.news-contents-list -->
+          </div><!-- /#tabpanel-1 -->
+        </dd>
+      </dl>
+    </div><!-- /.news-desc -->
+  </section>
+
+  <section class="section__base">
+    <h2 class="top__hdg">サービス・製品<span class="top__hdg--en">products</span></h2>
+
+    <p>当社では、シーケンス設計・機構設計・回路設計・アートワーク設計・ソフト開発・を行う開発部・技術部と基板実装・配線・組立を行う生産部があります。社内設計したものを同時に社内加工してしているので製造しやすさを考慮した効果的な設計・組立が行われています。社内で連携しているので外部に情報が漏れることもありません。</p>
+
+    <div class="top-service-list">
+      <ul>
+        <li class="top-service-list__list">
+          <a class="top-service-list__link" href="#">
+            <span class="top-service-list__img-wrap">
+              <img class="top-service-list__img" src="/images/top-icon-01.png" alt="">
+            </span>
+            <span class="top-service-list__text">電子回路基板</span>
+          </a>
+        </li>
+        <li class="top-service-list__list">
+          <a class="top-service-list__link" href="#">
+            <span class="top-service-list__img-wrap">
+              <img class="top-service-list__img" src="/images/top-icon-02.png" alt="">
+            </span>
+            <span class="top-service-list__text">計測装置</span>
+          </a>
+        </li>
+        <li class="top-service-list__list">
+          <a class="top-service-list__link" href="#">
+            <span class="top-service-list__img-wrap">
+              <img class="top-service-list__img" src="/images/top-icon-03.png" alt="">
+            </span>
+            <span class="top-service-list__text">産業機械電装関連</span>
+          </a>
+        </li>
+        <li class="top-service-list__list">
+          <a class="top-service-list__link" href="#">
+            <span class="top-service-list__img-wrap">
+              <img class="top-service-list__img" src="/images/top-icon-04.png" alt="">
+            </span>
+            <span class="top-service-list__text">制御盤</span>
+          </a>
+        </li>
+      </ul>
+    </div><!-- /.top-service-list -->
+
+    <div class="top-pickup-contents">
+      <div class="top-pickup-content">
+        <a class="top-pickup-content__link" href="#">
+          <h3 class="top-pickup-content__hdg">納入実績</h3>
+          <p>サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト</p>
+        </a>
+      </div><!-- /.top-pickup-content -->
+
+      <div class="top-pickup-content">
+        <a class="top-pickup-content__link" href="#">
+          <h3 class="top-pickup-content__hdg">生産体制について</h3>
+          <p>サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキスト</p>
+        </a>
+      </div><!-- /.top-pickup-content -->
+    </div><!-- /.top-pickup-contents -->
+  </section>
+
+  <section class="section__base">
+    <h2 class="top__hdg">設備<span class="top__hdg--en">equipment</span></h2>
+
+    <p>サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキス</p>
+
+    <div class="top-card-list">
+      <ul>
+        <li class="top-card-list__list">
+          <a class="top-card-list__link" href="#">
+            <div class="top-card-list__img-wrap">
+              <img class="top-card-list__img" src="/images/top-card-01.jpeg" alt="">
+            </div><!-- /.top-card-list__img-wrap -->
+            <div class="top-card-list__text-wrap">
+              <p>サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキス</p>
+            </div><!-- /.top-card-list__text-wrap -->
+          </a>
+        </li>
+        <li class="top-card-list__list">
+          <a class="top-card-list__link" href="#">
+            <div class="top-card-list__img-wrap">
+              <img class="top-card-list__img" src="/images/top-card-02.jpeg" alt="">
+            </div><!-- /.top-card-list__img-wrap -->
+            <div class="top-card-list__text-wrap">
+              <p>サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキス</p>
+            </div><!-- /.top-card-list__text-wrap -->
+          </a>
+        </li>
+        <li class="top-card-list__list">
+          <a class="top-card-list__link" href="#">
+            <div class="top-card-list__img-wrap">
+              <img class="top-card-list__img" src="/images/top-card-03.jpeg" alt="">
+            </div><!-- /.top-card-list__img-wrap -->
+            <div class="top-card-list__text-wrap">
+              <p>サンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキストサンプルテキス</p>
+            </div><!-- /.top-card-list__text-wrap -->
+          </a>
+        </li>
+      </ul>
+    </div><!-- /.top-card-list -->
+  </section>
+
+  <div class="top-contact">
+    <a class="top-contact__link" href="#">
+      <div class="top-contact__text-wrap">
+        <span class="top-contact__text">お問い合わせ<span class="top-contact__text--en">Contact us</span></span>
+      </div><!-- /.top-contact__text-wrap -->
+      <div class="top-contact__img-wrap">
+        <img class="top-contact__img" src="/images/top-contact-01.jpg" alt="">
+      </div><!-- /.top-contact__img-wrap -->
+    </a>
+  </div><!-- /.top-contact -->
 </main>
 
 <footer>

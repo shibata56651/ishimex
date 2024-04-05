@@ -6,6 +6,6 @@
         "sourceType": "module"
     },
     "rules": {
-        "linebreak-style": [2, "windows"]
+        "linebreak-style": [2, "mac"]
     }
 }

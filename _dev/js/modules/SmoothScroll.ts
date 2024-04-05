@@ -1,34 +1,49 @@
 import { offsetTop } from '../utility/OffsetTop';
 /**
- * パラメータから表示させたい要素までスクロールさせる機能
+ * トップに戻る機能
  */
-export class paramScroll {
+export class SmoothScroll {
+  o: { offset: number; HeaderHeight: number; };
+  element: HTMLAnchorElement;
+  urlHash: string;
+  href: string;
+  scrollTarget: HTMLElement | null;
+  scrollFlg: boolean;
+  scrollTargetPos: number;
+  scrollHandler: () => void;
+
   /**
-   * @param  {Element} element rootとなる要素
-   * @param  {Element} displayElms aタグ要素
+   * @param  {HTMLAnchorElement} element rootとなる要素
    * @returns void
    */
-  constructor(element, displayElms, options = {}) {
+  constructor(element: HTMLAnchorElement, urlHash: string, options = {}) {
     const defaultOptions = {
-      offset: 134
+      offset: 0,
+      HeaderHeight: 134
     };
 
     this.o = Object.assign(defaultOptions, options);
     this.element = element;
-    this.displayElms = displayElms;
-    this.scrollTarget = document.getElementById(this.element.substring(1));
+    this.urlHash = urlHash;
+    this.href = this.element.hash;
+    this.scrollTarget = this.href === '#top' ? document.documentElement : document.getElementById(this.href.substring(1));
     this.scrollFlg = false;
     this.scrollTargetPos = 0;
     this.scrollHandler = this.scrolling.bind(this);
+
     this.init();
   }
+
   /**
    * 初期化処理
    *
    * @returns void
    */
   init() {
-    window.addEventListener('load', this.clickHandler.bind(this));
+    this.element.addEventListener('click', this.clickHandler.bind(this));
+    if (this.urlHash === this.href) {
+      window.addEventListener('load', this.loadHandler.bind(this));
+    }
   }
 
   /**
@@ -37,25 +52,54 @@ export class paramScroll {
    * @param  {MouseEvent} e イベント
    * @returns void
    */
-  clickHandler() {
-
+  clickHandler(e: MouseEvent) {
     if (!this.scrollTarget) {
       return;
     }
 
-    this.displayElms.classList.add('is-active');
-    this.displayElms.style = 'display:none;';
-    if (document.body.clientWidth <= 1170) {
-      this.o.offset = 87;
-    }
-    this.scrollTargetPos = offsetTop(this.scrollTarget) - this.o.offset;
+    e.preventDefault();
 
-    history.pushState(null, '', this.element);
+    if (document.body.clientWidth <= 1170) {
+      this.o.HeaderHeight = 87;
+    } else {
+      this.o.HeaderHeight = 134;
+    }
+
+    this.scrollTargetPos = this.href === '#top' ? 0 : offsetTop(this.scrollTarget) - this.o.offset - this.o.HeaderHeight;
+
+    history.pushState(null, '', this.href);
 
     window.scrollTo({
       top: this.scrollTargetPos,
       behavior: 'smooth'
     });
+
+    this.scrollFlg = false;
+    window.addEventListener('scroll', this.scrollHandler);
+    this.setWatchScrollFlg();
+  }
+
+  /**
+   * ページロード時の処理
+   *
+   * @returns void
+   */
+  loadHandler() {
+    if (document.body.clientWidth <= 1170) {
+      this.o.HeaderHeight = 87;
+    } else {
+      this.o.HeaderHeight = 134;
+    }
+
+    if (this.scrollTarget) {
+      this.scrollTargetPos = this.href === '#top' ? 0 : offsetTop(this.scrollTarget) - this.o.offset - this.o.HeaderHeight;
+    }
+
+    window.scrollTo({
+      top: this.scrollTargetPos,
+      behavior: 'smooth'
+    });
+
     this.scrollFlg = false;
     window.addEventListener('scroll', this.scrollHandler);
     this.setWatchScrollFlg();
@@ -84,6 +128,7 @@ export class paramScroll {
 
         return;
       }
+
       this.scrollFlg = false;
     }, 100);
   }
@@ -97,15 +142,16 @@ export class paramScroll {
     if (!this.scrollTarget) {
       return;
     }
+
     const hasTabindex = this.scrollTarget.hasAttribute('tabindex');
+
+    this.scrollTargetPos = this.href === '#top' ? 0 : offsetTop(this.scrollTarget) - this.o.offset;
 
     if (!hasTabindex) {
       this.scrollTarget.setAttribute('tabindex', '-1');
     }
-    console.log(this.scrollTarget);
     this.scrollTarget.focus();
     this.scrollTarget.blur();
-    window.scrollTo(0, this.scrollTargetPos);
     if (!hasTabindex) {
       this.scrollTarget.removeAttribute('tabindex');
     }

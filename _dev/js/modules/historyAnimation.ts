@@ -1,9 +1,11 @@
 export class historyAnimation {
+  o: { activeClass: string };
+  element: HTMLElement;
   /**
    * @param  {Element} element rootとなる要素
    * @returns void
    */
-  constructor(element = {}) {
+  constructor(element: HTMLElement) {
     const defaultOptions = {
       activeClass: 'is-animation',
     };

@@ -1,20 +1,29 @@
 export class jsonGetData {
+  o: { activeClass: string, changeClass: string, pauseClass: string, jsonPath: string, count: number };
+  elements: HTMLElement;
+  carouselBtn: HTMLElement | null;
+  jsonObj: {};
+  obj: XMLHttpRequest;
+  json_data: any;
+  ul_element: HTMLUListElement | undefined;
   /**
    * @param  {Element} elements rootとなる要素
    * @returns void
    */
-  constructor(elements = {}) {
+  constructor(elements: HTMLElement) {
     const defaultOptions = {
       activeClass: 'is-active',
       changeClass: 'is-changing',
       pauseClass: 'is-pause',
+      jsonPath: '/common/data/newdata.json',
       count: 0,
     };
 
     this.o = Object.assign(defaultOptions);
     this.elements = elements;
     this.carouselBtn = document.querySelector('.js-carousel-mv-btn');
-    this.timer;
+    this.jsonObj = {};
+    this.obj = new XMLHttpRequest();
     this.init();
   }
   /**
@@ -35,11 +44,7 @@ export class jsonGetData {
     // 取得したレスポンスをページに表示
     // console.log(JSON.parse(this.responseText))
 
-    this.jsonPath = '/common/data/newdata.json';
-    this.jsonObj = {};
-    this.obj = new XMLHttpRequest();
-
-    this.obj.open('get', this.jsonPath, false);
+    this.obj.open('get', this.o.jsonPath, false);
 
     const _this = this;
     this.obj.onreadystatechange = function () {

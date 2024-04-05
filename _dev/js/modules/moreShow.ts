@@ -1,9 +1,11 @@
 export class moreShow {
+  o: { activeClass: string, moreShowContents: string };
+  element: HTMLElement;
   /**
    * @param  {Element} element rootとなる要素
    * @returns void
    */
-  constructor(element = {}) {
+  constructor(element: HTMLElement) {
     const defaultOptions = {
       activeClass: 'is-active',
       moreShowContents: 'js-more-show',
@@ -26,18 +28,18 @@ export class moreShow {
   }
 
   /**
-   * @param  {object} event 発火ボタンのイベント
+   * 発火ボタンのイベント
    */
   clickHandler() {
     const displayElm = this.element.closest(`.${this.o.moreShowContents}`);
 
     if (this.element.textContent === '閉じる') {
       this.element.textContent = 'もっと見る';
-      displayElm.classList.remove(this.o.activeClass);
+      displayElm?.classList.remove(this.o.activeClass);
       return;
     }
 
-    displayElm.classList.add(this.o.activeClass);
+    displayElm?.classList.add(this.o.activeClass);
     this.element.textContent = '閉じる';
   }
 }
