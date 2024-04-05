@@ -1,2 +1,97 @@
 @use "../definition/mixin" as *;
 @use "../definition/var" as *;
+
+.footer {
+  position: relative;
+
+  @include rwd(bpSp) {
+    background: $color-bg;
+    height: 300px;
+    border-top: solid 6px $color-main;
+    padding: 24px 12px;
+  }
+}
+
+.footer-logo {
+  display: inline-block;
+
+  @include rwd(bpSp) {
+    height: 50px;
+  }
+
+  &__img {
+    @include rwd(bpSp) {
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+}
+
+.footer-desc {
+  @include rwd(bpSp) {
+    padding-left: 40px;
+    margin-top: 32px;
+  }
+
+  > dl {
+    @include rwd(bpSp) {
+      display: flex;
+      gap: 36px;
+    }
+  }
+
+  &__contents {
+    @include rwd(bpSp) {
+      display: flex;
+    }
+
+    > dt {
+      position: relative;
+
+      @include rwd(bpSp) {
+        padding-right: 16px;
+      }
+
+      &::before {
+        content: "";
+
+        @include rwd(bpSp) {
+          position: absolute;
+          top: 4px;
+          right: 0;
+          width: 1px;
+          height: 20px;
+          background: $color-gray;
+        }
+      }
+    }
+
+    > dd {
+      @include rwd(bpSp) {
+        padding-left: 16px;
+      }
+    }
+  }
+
+  &__contents-link {
+    color: $color-black;
+
+    @include rwd(bpSp) {
+      font-weight: $weight-medium;
+    }
+  }
+}
+
+.footer-list {
+  &__link {
+    color: $color-black;
+  }
+}
+
+.footer-copyright {
+  @include rwd(bpSp) {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+  }
+}

@@ -23,6 +23,7 @@
 }
 
 .splide {
+  position: relative;
   max-height: 50vw;
   height: 100%;
 }
@@ -109,6 +110,7 @@
 .lead-em,
 .lead-text {
   display: block;
+  font-weight: 700;
 }
 @media print, screen and (max-width: 768px) {
   .lead-em,
@@ -125,12 +127,17 @@
 
 .lead-em {
   color: #0433e3;
-  font-weight: 400;
+  text-shadow: 0 0 5px #fff;
 }
 @media print, screen and (min-width: 769px) {
   .lead-em {
     margin-bottom: 30px;
   }
+}
+
+.lead-text {
+  color: #fff;
+  text-shadow: 0 0 5px #222;
 }
 
 .top__hdg {
@@ -299,9 +306,15 @@
   }
 }
 
+@media print, screen and (min-width: 769px) {
+  .top-pickup-content {
+    width: 50%;
+  }
+}
 .top-pickup-content__link {
   position: relative;
   color: #222;
+  height: 100%;
 }
 @media print, screen and (min-width: 769px) {
   .top-pickup-content__link {
@@ -422,21 +435,69 @@
 .top-card-list__text-wrap {
   margin-top: 12px;
 }
+.top-card-list__hdg {
+  display: inline-block;
+  font-weight: 500;
+}
+@media print, screen and (min-width: 769px) {
+  .top-card-list__hdg {
+    margin-bottom: 20px;
+  }
+}
 
+.top-contact__img {
+  transition: 0.3s;
+}
+.top-contact__img-wrap {
+  overflow: hidden;
+}
 .top-contact__link {
   position: relative;
   display: block;
 }
+.top-contact__link:hover .top-contact__img {
+  transform: scale(1.1);
+}
+.top-contact__link::before, .top-contact__link::after {
+  position: absolute;
+  content: "";
+  z-index: 1;
+}
+.top-contact__link::before {
+  top: 42%;
+  right: 32px;
+  border-radius: 1000px;
+  border: solid 1px #fff;
+}
 @media print, screen and (min-width: 769px) {
-  .top-contact__link {
-    padding: 0 60px;
+  .top-contact__link::before {
+    width: 62px;
+    height: 62px;
+  }
+}
+.top-contact__link::after {
+  border-top: solid 1px #fff;
+  border-right: solid 1px #fff;
+  transform: rotate(45deg) translate(-50%, -50%);
+}
+@media print, screen and (min-width: 769px) {
+  .top-contact__link::after {
+    top: 56%;
+    right: 56px;
+    width: 22px;
+    height: 22px;
   }
 }
 .top-contact__text-wrap {
   position: absolute;
-  top: 50%;
+  top: 38%;
   left: 0;
-  transform: translate(-50%, 0);
+  z-index: 1;
+}
+@media print, screen and (min-width: 769px) {
+  .top-contact__text-wrap {
+    padding-left: 60px;
+  }
 }
 .top-contact__text {
   display: block;
@@ -446,6 +507,10 @@
   .top-contact__text {
     font-size: 3rem;
   }
+}
+.top-contact__text--en {
+  display: block;
+  line-height: 24px;
 }
 @media print, screen and (min-width: 769px) {
   .top-contact__text--en {
