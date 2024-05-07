@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+	<item>
+		<id>1</id>
+		<listingDate>2024/04/18</listingDate>
+		<limitDate>2024/04/22</limitDate>
+		<text>プレリリースニュース1プレリリースニュース1プレリリースニュース1プレリリースニュース1</text>
+		<anchor>/news/release/20240418.html</anchor>
+	</item>
+
+	<item>
+		<id>1</id>
+		<listingDate>2024/04/21</listingDate>
+		<text>プレリリースニュース2プレリリースニュース2プレリリースニュース2プレリリースニュース2プレリリースニュース2プレリリースニュース2プレリリースニュース2プレリリースニュース2</text>
+		<anchor>/news/release/20240421.html</anchor>
+	</item>
+
+	<item>
+		<id>1</id>
+		<listingDate>2024/03/20</listingDate>
+		<text>ダミダミダミダミだみ</text>
+		<anchor>/news/release/20240320.html</anchor>
+	</item>
+
+	<item>
+		<id>1</id>
+		<listingDate>2024/02/20</listingDate>
+		<text>ダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキストダミーテキスト</text>
+		<anchor>/news/release/20240220.html</anchor>
+	</item>
+
+	<item>
+		<id>1</id>
+		<listingDate>2024/01/24</listingDate>
+		<text>ダミーテキストダミーテキスト</text>
+		<anchor>/news/release/20240124.html</anchor>
+	</item>
+
+	<item>
+		<id>1</id>
+		<listingDate>2023/12/25</listingDate>
+		<text>だみー</text>
+		<anchor>/news/release/20231225.html</anchor>
+	</item>
+
+  <item>
+		<id>2</id>
+    <listingDate>2024/04/06</listingDate>
+		<text>企業情報1企業情報1企業情報1企業情報1企業情報1企業情報1企業情報1企業情報1企業情報1</text>
+		<anchor>/news/company/20240406.html</anchor>
+  </item>
+
+  <item>
+		<id>2</id>
+    <listingDate>2024/03/06</listingDate>
+		<text>企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2</text>
+		<anchor>/news/company/20240306.html</anchor>
+  </item>
+
+  <item>
+		<id>2</id>
+    <listingDate>2024/02/06</listingDate>
+		<text>企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2企業情報2</text>
+		<anchor>/news/company/20240206.html</anchor>
+  </item>
+
+  <item>
+		<id>3</id>
+    <listingDate>2024/04/06</listingDate>
+		<text>イベント情報1イベント情報1イベント情報1イベント情報1イベント情報1イベント情報1</text>
+		<anchor>/news/event/20240406.html</anchor>
+  </item>
+
+  <item>
+		<id>3</id>
+    <listingDate>2024/03/06</listingDate>
+		<text>イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2</text>
+		<anchor>/news/event/20240306.html</anchor>
+  </item>
+
+  <item>
+		<id>3</id>
+    <listingDate>2024/02/06</listingDate>
+		<text>イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2</text>
+		<anchor>/news/event/20240206.html</anchor>
+  </item>
+
+  <item>
+		<id>3</id>
+    <listingDate>2024/01/06</listingDate>
+		<text>イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2イベント情報2</text>
+		<anchor>/news/event/20240106.html</anchor>
+  </item>
+</data>

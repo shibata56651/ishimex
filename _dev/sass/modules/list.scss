@@ -1,2 +1,89 @@
 @use "../definition/mixin" as *;
 @use "../definition/var" as *;
+
+.link-list-category {
+  @include rwd(bpSp) {
+    max-width: 456px;
+    margin: 0 auto;
+  }
+
+  >ul {
+    @include rwd(bpSp) {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 32px 26px;
+      width: 100%;
+    }
+  }
+
+  &__list {
+    @include rwd(bpSp) {
+      height: 100%;
+    }
+  }
+
+  &__link {
+    position: relative;
+    color: $color-black;
+
+    @include rwd(bpSp) {
+      padding: 12px 48px 12px 0;
+    }
+
+    &::before,
+    &::after {
+      position: absolute;
+      content: "";
+    }
+
+    &::before {
+      bottom: 50%;
+      right: 0;
+      border-radius: 1000px;
+      border: solid 1px $color-sub-03;
+      transform: translate(0%, 50%);
+      transition: .3s;
+
+      @include rwd(bpSp, below) {
+        width: 20px;
+        height: 20px;
+      }
+
+      @include rwd(bpSp) {
+        width: 38px;
+        height: 38px;
+      }
+    }
+
+    &::after {
+      border-top: solid 1px $color-sub-03;
+      border-right: solid 1px $color-sub-03;
+      transform: rotate(45deg) translate(-50%, -50%);
+
+      @include rwd(bpSp, below) {
+        bottom: 12px;
+        right: 20px;
+        width: 8px;
+        height: 8px;
+      }
+
+      @include rwd(bpSp) {
+        bottom: 20%;
+        right: 16px;
+        width: 12px;
+        height: 12px;
+      }
+    }
+
+    &:hover {
+      &::before {
+        background: $color-sub-03;
+      }
+
+      &::after {
+        border-top: solid 1px $color-white;
+        border-right: solid 1px $color-white;
+      }
+    }
+  }
+}

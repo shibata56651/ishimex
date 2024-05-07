@@ -12936,6 +12936,10 @@ __webpack_require__(/*! ./init */ "./_dev/js/init.ts");
 
 var topMv_1 = __webpack_require__(/*! ./modules/topMv */ "./_dev/js/modules/topMv.ts");
 
+var accordion_1 = __webpack_require__(/*! ./modules/accordion */ "./_dev/js/modules/accordion.ts");
+
+var hamburger_1 = __webpack_require__(/*! ./modules/hamburger */ "./_dev/js/modules/hamburger.ts");
+
 var fade_1 = __webpack_require__(/*! ./modules/fade */ "./_dev/js/modules/fade.ts");
 
 var SmoothScroll_1 = __webpack_require__(/*! ./modules/SmoothScroll */ "./_dev/js/modules/SmoothScroll.ts");
@@ -12972,36 +12976,65 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
     autoplay: true,
     pauseOnHover: false,
     interval: 10000
-  }).mount(); // アンカーリンク
+  }).mount();
+  var footerTarget = doc.querySelectorAll('.js-footer-accordion-roots');
 
-  var anchorLinks = doc.querySelectorAll('a[href^="#anc-"], a[href="#top"]');
-  var urlHash = doc.location.hash;
-
-  var _iterator = _createForOfIteratorHelper(anchorLinks),
+  var _iterator = _createForOfIteratorHelper(footerTarget),
       _step;
 
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var _item6 = _step.value;
-      var linkItem = _item6;
-      new SmoothScroll_1.SmoothScroll(linkItem, urlHash);
-    } // モーダル
+      var root = _step.value;
+      var category = 'footer';
 
+      var _item5 = root.querySelector('.js-accordion-target');
+
+      var display = root.querySelector('.js-accordion-display');
+      new accordion_1.accordion(_item5, display, footerTarget, category);
+    }
   } catch (err) {
     _iterator.e(err);
   } finally {
     _iterator.f();
   }
 
-  var modalRoots = doc.querySelectorAll('.js-modal-hook');
-  var modalOverlay = doc.getElementById('js-modal-overlay');
+  var hamburgerTarget = doc.querySelector('.js-hamburger-button');
+  var hamburgerDisplay = doc.querySelector('.js-hamburger-menu');
+  var hamburgerLins = doc.querySelectorAll('.js-hamburger-links');
 
-  var _iterator2 = _createForOfIteratorHelper(modalRoots),
+  if (hamburgerTarget) {
+    new hamburger_1.hamburger(hamburgerTarget, hamburgerDisplay, hamburgerLins);
+  } // アンカーリンク
+
+
+  var anchorLinks = doc.querySelectorAll('a[href^="#anc-"], a[href="#top"]');
+  var urlHash = doc.location.hash;
+
+  var _iterator2 = _createForOfIteratorHelper(anchorLinks),
       _step2;
 
   try {
     for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-      var _item7 = _step2.value;
+      var _item6 = _step2.value;
+      var linkItem = _item6;
+      new SmoothScroll_1.SmoothScroll(linkItem, urlHash);
+    } // モーダル
+
+  } catch (err) {
+    _iterator2.e(err);
+  } finally {
+    _iterator2.f();
+  }
+
+  var modalRoots = doc.querySelectorAll('.js-modal-hook');
+  var modalOverlay = doc.getElementById('js-modal-overlay');
+
+  var _iterator3 = _createForOfIteratorHelper(modalRoots),
+      _step3;
+
+  try {
+    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+      var _item7 = _step3.value;
       modalOverlay && new modal_1.Modal(_item7, modalOverlay);
     } // const modalRoots = doc.querySelectorAll('.js-modal-hook');
     // if (modalRoots) {
@@ -13128,50 +13161,36 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
     // }
 
   } catch (err) {
-    _iterator2.e(err);
+    _iterator3.e(err);
   } finally {
-    _iterator2.f();
+    _iterator3.f();
   }
 
-  var tabRoots = doc.querySelectorAll('.js-tab-hook');
-  var tabRoots2 = doc.querySelectorAll('.js-tab-hook-02');
-  var displayTarget = null;
+  var tabRoots = doc.querySelectorAll('[aria-controls^="tabpanel-"]'); // const tabRoots2: NodeListOf<HTMLAnchorElement> = doc.querySelectorAll('.js-tab-hook-02');
 
   if (tabRoots.length) {
-    displayTarget = 'js-tab-news-items';
+    var displayTarget = doc.querySelectorAll('.js-tab-news-items');
 
-    var _iterator3 = _createForOfIteratorHelper(tabRoots),
-        _step3;
-
-    try {
-      for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-        var item = _step3.value;
-        new tab_1.tab(item, tabRoots, displayTarget);
-      }
-    } catch (err) {
-      _iterator3.e(err);
-    } finally {
-      _iterator3.f();
-    }
-  }
-
-  if (tabRoots2.length) {
-    displayTarget = 'js-tab-member-items';
-
-    var _iterator4 = _createForOfIteratorHelper(tabRoots2),
+    var _iterator4 = _createForOfIteratorHelper(tabRoots),
         _step4;
 
     try {
       for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-        var _item = _step4.value;
-        new tab_1.tab(_item, tabRoots2, displayTarget);
+        var item = _step4.value;
+        new tab_1.tab(item, tabRoots, displayTarget);
       }
     } catch (err) {
       _iterator4.e(err);
     } finally {
       _iterator4.f();
     }
-  }
+  } // if (tabRoots2.length) {
+  //   displayTarget = 'js-tab-member-items';
+  //   for (const item of tabRoots2) {
+  //     new tab(item, tabRoots2, displayTarget);
+  //   }
+  // }
+
 
   var moreShowRoots = doc.querySelectorAll('.js-show-btn');
 
@@ -13181,8 +13200,8 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
 
     try {
       for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-        var _item2 = _step5.value;
-        new moreShow_1.moreShow(_item2);
+        var _item = _step5.value;
+        new moreShow_1.moreShow(_item);
       }
     } catch (err) {
       _iterator5.e(err);
@@ -13276,8 +13295,8 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
 
     try {
       for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-        var _item3 = _step6.value;
-        new fade_1.fade(_item3);
+        var _item2 = _step6.value;
+        new fade_1.fade(_item2);
       }
     } catch (err) {
       _iterator6.e(err);
@@ -13294,9 +13313,9 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
 
     try {
       for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-        var _item4 = _step7.value;
-        var togglejudge = _item4.dataset.toggleJudge;
-        new toggle_1.Toggle(_item4, toggleRoots, togglejudge);
+        var _item3 = _step7.value;
+        var togglejudge = _item3.dataset.toggleJudge;
+        new toggle_1.Toggle(_item3, toggleRoots, togglejudge);
       }
     } catch (err) {
       _iterator7.e(err);
@@ -13337,9 +13356,9 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
 
     try {
       for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
-        var _item5 = _step8.value;
+        var _item4 = _step8.value;
         num += 1;
-        new xmlGetData_1.xmlGetData(_item5, num);
+        new xmlGetData_1.xmlGetData(_item4, num);
       }
     } catch (err) {
       _iterator8.e(err);
@@ -13554,6 +13573,137 @@ exports.SmoothScroll = SmoothScroll;
 
 /***/ }),
 
+/***/ "./_dev/js/modules/accordion.ts":
+/*!**************************************!*\
+  !*** ./_dev/js/modules/accordion.ts ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, exports) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.accordion = void 0;
+
+var accordion = /*#__PURE__*/function () {
+  /**
+   * @param  {Element} elements rootとなる要素
+   * @returns void
+   */
+  function accordion(elements, display, roots, category) {
+    _classCallCheck(this, accordion);
+
+    var defaultOptions = {
+      activeClass: 'is-active'
+    };
+    this.o = Object.assign(defaultOptions);
+    this.element = elements;
+    this.display = display;
+    this.roots = roots;
+    this.category = category;
+    this.init();
+  }
+  /**
+   * 初期化処理
+   *
+   * @returns void
+   */
+
+
+  _createClass(accordion, [{
+    key: "init",
+    value: function init() {
+      var _a;
+
+      (_a = this.element) === null || _a === void 0 ? void 0 : _a.addEventListener('click', this.clickFunc.bind(this));
+    }
+  }, {
+    key: "fadeAnimation",
+    value: function fadeAnimation(target, kind) {
+      var _this = this;
+
+      if (target) {
+        target.style.display = 'block';
+        this.category === 'footer' ? target.style.padding = '10px 24px' : null;
+        var targetHeight = target.scrollHeight;
+        kind === 'open' ? target.style.height = '0' : target.style.height = targetHeight + 'px';
+        target.style.height = targetHeight + 'px';
+        var fadeAnimation = this.category === 'footer' && kind === 'open' ? target.animate({
+          height: ['0', targetHeight + 'px'],
+          padding: ['0', '10px 24px']
+        }, {
+          duration: 600,
+          easing: 'ease'
+        }) : target.animate({
+          height: [targetHeight + 'px', '0'],
+          padding: ['10px 24px', '0']
+        }, {
+          duration: 600,
+          easing: 'ease'
+        });
+
+        fadeAnimation.onfinish = function () {
+          target && (kind === 'open' ? target.style.height = targetHeight + 'px' : target.style.height = '0');
+          target && (_this.category === 'footer' && kind === 'open' ? target.style.height = target.style.padding = '10px 24px' : target.style.padding = '0');
+        };
+      }
+    }
+    /**
+     * ページロード時に情報を取得
+     *
+     * @returns void
+     */
+
+  }, {
+    key: "clickFunc",
+    value: function clickFunc(e) {
+      var _this2 = this;
+
+      var _a, _b, _c, _d, _e, _f;
+
+      e.preventDefault();
+
+      if ((_a = this.element) === null || _a === void 0 ? void 0 : _a.classList.contains(this.o.activeClass)) {
+        (_b = this.element) === null || _b === void 0 ? void 0 : _b.classList.remove(this.o.activeClass);
+        (_c = this.display) === null || _c === void 0 ? void 0 : _c.classList.remove(this.o.activeClass);
+        this.display && this.fadeAnimation(this.display, 'close');
+        return;
+      }
+
+      (_d = this.roots) === null || _d === void 0 ? void 0 : _d.forEach(function (element) {
+        var target = element.querySelector('.js-accordion-target');
+        var display = element.querySelector('.js-accordion-display');
+
+        if (target === null || target === void 0 ? void 0 : target.classList.contains(_this2.o.activeClass)) {
+          target === null || target === void 0 ? void 0 : target.classList.remove(_this2.o.activeClass);
+        }
+
+        if (display === null || display === void 0 ? void 0 : display.classList.contains(_this2.o.activeClass)) {
+          display === null || display === void 0 ? void 0 : display.classList.remove(_this2.o.activeClass);
+          display && _this2.fadeAnimation(display, 'close');
+        }
+      });
+      (_e = this.element) === null || _e === void 0 ? void 0 : _e.classList.add(this.o.activeClass);
+      (_f = this.display) === null || _f === void 0 ? void 0 : _f.classList.add(this.o.activeClass);
+      this.display && this.fadeAnimation(this.display, 'open');
+    }
+  }]);
+
+  return accordion;
+}();
+
+exports.accordion = accordion;
+
+/***/ }),
+
 /***/ "./_dev/js/modules/fade.ts":
 /*!*********************************!*\
   !*** ./_dev/js/modules/fade.ts ***!
@@ -13625,6 +13775,170 @@ exports.fade = fade;
 
 /***/ }),
 
+/***/ "./_dev/js/modules/hamburger.ts":
+/*!**************************************!*\
+  !*** ./_dev/js/modules/hamburger.ts ***!
+  \**************************************/
+/***/ (function(__unused_webpack_module, exports) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.hamburger = void 0;
+
+var hamburger = /*#__PURE__*/function () {
+  /**
+   * @param  {Element} elements rootとなる要素
+   * @returns void
+   */
+  function hamburger(elements, display, roots) {
+    _classCallCheck(this, hamburger);
+
+    var defaultOptions = {
+      activeClass: 'is-active'
+    };
+    this.o = Object.assign(defaultOptions);
+    this.element = elements;
+    this.display = display;
+    this.roots = roots;
+    this.init();
+  }
+  /**
+   * 初期化処理
+   *
+   * @returns void
+   */
+
+
+  _createClass(hamburger, [{
+    key: "init",
+    value: function init() {
+      var _a;
+
+      (_a = this.element) === null || _a === void 0 ? void 0 : _a.addEventListener('click', this.clickFunc.bind(this));
+    }
+  }, {
+    key: "parentFadeAnimation",
+    value: function parentFadeAnimation(target, kind) {
+      var _this = this;
+
+      var _a;
+
+      if (target && kind === 'open') {
+        target.style.display = 'block';
+        target.style.width = '0';
+        var fadeAnimation = kind === 'open' ? target.animate({
+          width: ['0', '100vw']
+        }, {
+          duration: 600,
+          easing: 'ease'
+        }) : target.animate({
+          width: ['100vw', '0']
+        }, {
+          duration: 600,
+          easing: 'ease'
+        });
+
+        fadeAnimation.onfinish = function () {
+          var _a;
+
+          target.style.width = '100vw';
+          (_a = _this.roots) === null || _a === void 0 ? void 0 : _a.forEach(function (item) {
+            _this.linksFadeAnimation(item, kind);
+          });
+        };
+      } else {
+        target.style.width = '100vw';
+        (_a = this.roots) === null || _a === void 0 ? void 0 : _a.forEach(function (item) {
+          _this.linksFadeAnimation(item, kind, _this.display);
+        });
+      }
+    }
+  }, {
+    key: "linksFadeAnimation",
+    value: function linksFadeAnimation(target, kind, display) {
+      if (target && kind === 'open') {
+        target.style.display = 'block';
+        var fadeAnimation = target.animate({
+          transform: ['translateX(200px)', 'translateX(0)']
+        }, {
+          duration: 600,
+          easing: 'ease'
+        });
+
+        fadeAnimation.onfinish = function () {
+          target && (target.style.transform = 'translateX(0)');
+        };
+      } else {
+        target.style.display = 'block';
+
+        var _fadeAnimation = target.animate({
+          transform: ['translateX(0)', 'translateX(500px)']
+        }, {
+          duration: 600,
+          easing: 'ease'
+        });
+
+        _fadeAnimation.onfinish = function () {
+          target.style.transform = 'translateX(500px)';
+          target.style.display = 'none';
+
+          if (display) {
+            display.style.width = '100vw';
+            var bgAnimation = display.animate({
+              width: ['100vw', '0']
+            }, {
+              duration: 600,
+              easing: 'ease'
+            });
+
+            bgAnimation.onfinish = function () {
+              display.style.width = '0';
+            };
+          }
+        };
+      }
+    }
+    /**
+     * ページロード時に情報を取得
+     *
+     * @returns void
+     */
+
+  }, {
+    key: "clickFunc",
+    value: function clickFunc() {
+      var _a, _b, _c, _d, _e;
+
+      if ((_a = this.element) === null || _a === void 0 ? void 0 : _a.classList.contains(this.o.activeClass)) {
+        (_b = this.element) === null || _b === void 0 ? void 0 : _b.classList.remove(this.o.activeClass);
+        (_c = this.display) === null || _c === void 0 ? void 0 : _c.classList.remove(this.o.activeClass);
+        this.display && this.parentFadeAnimation(this.display, 'close');
+        return;
+      }
+
+      (_d = this.element) === null || _d === void 0 ? void 0 : _d.classList.add(this.o.activeClass);
+      (_e = this.display) === null || _e === void 0 ? void 0 : _e.classList.add(this.o.activeClass);
+      this.display && this.parentFadeAnimation(this.display, 'open');
+    }
+  }]);
+
+  return hamburger;
+}();
+
+exports.hamburger = hamburger;
+
+/***/ }),
+
 /***/ "./_dev/js/modules/jsonGetData.ts":
 /*!****************************************!*\
   !*** ./_dev/js/modules/jsonGetData.ts ***!
@@ -13657,7 +13971,7 @@ var jsonGetData = /*#__PURE__*/function () {
       activeClass: 'is-active',
       changeClass: 'is-changing',
       pauseClass: 'is-pause',
-      jsonPath: '/common/data/newdata.json',
+      jsonPath: '/common/data/newsData.json',
       count: 0
     };
     this.o = Object.assign(defaultOptions);
@@ -14147,22 +14461,21 @@ exports.tab = void 0;
 
 var tab = /*#__PURE__*/function () {
   /**
-   * @param  {HTMLAnchorElement} element rootとなる要素
+   * @param  {HTMLButtonElement} element rootとなる要素
    * @returns void
    */
   function tab(element, roots, displayTarget) {
     _classCallCheck(this, tab);
 
     var defaultOptions = {
-      activeClass: 'is-active',
-      tabItem: displayTarget
+      activeClass: 'is-active'
     };
     this.o = Object.assign(defaultOptions);
     this.element = element;
     this.roots = roots;
-    this.tabItem = null;
-    this.displayItem = null;
-    this.content = document.getElementById(this.element.hash.substring(1));
+    this.displayItem = displayTarget;
+    this.contentTarget = this.element.getAttribute('aria-controls');
+    this.content = this.contentTarget ? document.getElementById(this.contentTarget) : null;
     this.init();
   }
   /**
@@ -14179,15 +14492,13 @@ var tab = /*#__PURE__*/function () {
       this.element.addEventListener('click', this.clickHandler.bind(this));
     }
     /**
-     * @param  {MouseEvent} e 発火ボタンのイベント
+     * @returns 発火ボタンのイベント
      */
 
   }, {
     key: "clickHandler",
-    value: function clickHandler(e) {
-      var _a, _b, _c, _d;
-
-      e.preventDefault();
+    value: function clickHandler() {
+      var _a, _b, _c;
 
       var _iterator = _createForOfIteratorHelper(this.roots),
           _step;
@@ -14219,13 +14530,8 @@ var tab = /*#__PURE__*/function () {
         }
       }
 
-      if (this.element.getAttribute('href')) {
-        var href = (_b = this.element.getAttribute('href')) === null || _b === void 0 ? void 0 : _b.substring(1);
-        href ? this.tabItem = document.getElementById(href) : this.tabItem = null;
-      }
-
-      (_c = this.element.parentElement) === null || _c === void 0 ? void 0 : _c.classList.add(this.o.activeClass);
-      (_d = this.content) === null || _d === void 0 ? void 0 : _d.classList.add(this.o.activeClass);
+      (_b = this.element.parentElement) === null || _b === void 0 ? void 0 : _b.classList.add(this.o.activeClass);
+      (_c = this.content) === null || _c === void 0 ? void 0 : _c.classList.add(this.o.activeClass);
     }
   }]);
 
@@ -14472,7 +14778,7 @@ var xmlGetData = /*#__PURE__*/function () {
       activeClass: 'is-active',
       changeClass: 'is-changing',
       pauseClass: 'is-pause',
-      xmlPath: '/common/data/newdata.xml',
+      xmlPath: '/common/data/newsData.xml',
       count: 0
     };
     this.o = Object.assign(defaultOptions);
@@ -14495,7 +14801,7 @@ var xmlGetData = /*#__PURE__*/function () {
       window.addEventListener('DOMContentLoaded', this.getDataFunc.bind(this));
     }
     /**
-     * ページロード時にスライドショーを再生する
+     * ページロード時に情報を取得
      *
      * @returns void
      */
@@ -14512,6 +14818,11 @@ var xmlGetData = /*#__PURE__*/function () {
       .then(function (data) {
         var parser = new DOMParser();
         var sitemap = parser.parseFromString(data, "application/xml");
+        var nowDate = new Date();
+        var nowYear = String(nowDate.getFullYear());
+        var nowMonth = String(nowDate.getMonth() + 1).padStart(2, '0');
+        var nowDay = String(nowDate.getDate()).padStart(2, '0');
+        var displayCount = 0;
         _this.items = sitemap.querySelectorAll('item');
         _this.ul_element = document.createElement('ul');
 
@@ -14524,16 +14835,41 @@ var xmlGetData = /*#__PURE__*/function () {
 
             var id = _data.querySelector('id');
 
-            if (_this.count === Number(id === null || id === void 0 ? void 0 : id.textContent)) {
-              var li_element = document.createElement('li');
+            if (displayCount <= 4 && _this.count === Number(id === null || id === void 0 ? void 0 : id.innerHTML)) {
+              var listingDate = _data.querySelector('listingDate');
 
-              var text = _data.querySelector('text');
+              var limitDate = _data.querySelector('limitDate');
 
-              var last_update = _data.querySelector('lastmod');
+              var anchor = _data.querySelector('anchor');
 
-              li_element.innerHTML = "text\uFF1A".concat(text === null || text === void 0 ? void 0 : text.textContent, "<br>\u6700\u7D42\u66F4\u65B0\u65E5\uFF1A").concat(last_update === null || last_update === void 0 ? void 0 : last_update.textContent);
+              if (listingDate ? limitDate ? limitDate.innerHTML.split('/').join('') > nowYear + nowMonth + nowDay && listingDate.innerHTML.split('/').join('') <= nowYear + nowMonth + nowDay : listingDate.innerHTML.split('/').join('') <= nowYear + nowMonth + nowDay : false) {
+                displayCount++;
 
-              _this.ul_element.appendChild(li_element);
+                var text = _data.querySelector('text');
+
+                var liElement = document.createElement('li');
+                var anchorParentElement = document.createElement('a');
+                var divChildDateElement = document.createElement('div');
+                var divChildContentsElement = document.createElement('div');
+                var spanDateElement = document.createElement('span');
+                var spanContentsElement = document.createElement('span');
+                anchorParentElement.setAttribute('href', "".concat(anchor === null || anchor === void 0 ? void 0 : anchor.innerHTML));
+                liElement.appendChild(anchorParentElement);
+                anchorParentElement.appendChild(divChildDateElement);
+                anchorParentElement.appendChild(divChildContentsElement);
+                divChildDateElement.appendChild(spanDateElement);
+                divChildContentsElement.appendChild(spanContentsElement);
+                liElement.classList.add('news-contents-list__list');
+                anchorParentElement.classList.add('news-contents-list__anchor');
+                divChildDateElement.classList.add('news-contents-list__date');
+                divChildContentsElement.classList.add('news-contents-list__content');
+                spanDateElement.classList.add('news-contents-list__date-text');
+                spanContentsElement.classList.add('news-contents-list__content-text');
+                spanDateElement.innerHTML = "".concat(listingDate === null || listingDate === void 0 ? void 0 : listingDate.textContent);
+                spanContentsElement.innerHTML = "".concat(text === null || text === void 0 ? void 0 : text.textContent);
+
+                _this.ul_element.appendChild(liElement);
+              }
             }
           }
         } catch (err) {

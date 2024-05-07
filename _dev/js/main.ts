@@ -1,6 +1,7 @@
 import "./init";
 import { topMv } from './modules/topMv';
-import { splide } from './modules/splide';
+import { accordion } from './modules/accordion';
+import { hamburger } from './modules/hamburger';
 import { fade } from './modules/fade';
 import { SmoothScroll } from './modules/SmoothScroll';
 import { tab } from './modules/tab';
@@ -27,6 +28,23 @@ import "scroll-behavior-polyfill";
     pauseOnHover: false,
     interval: 10000,
   }).mount();
+
+  const footerTarget: NodeListOf<Element> | null = doc.querySelectorAll('.js-footer-accordion-roots');
+
+  for (const root of footerTarget) {
+    const category = 'footer';
+    const item: HTMLElement | null = root.querySelector('.js-accordion-target');
+    const display: HTMLElement | null = root.querySelector('.js-accordion-display');
+    new accordion(item, display, footerTarget, category);
+  }
+
+  const hamburgerTarget: HTMLElement | null = doc.querySelector('.js-hamburger-button');
+  const hamburgerDisplay: HTMLElement | null = doc.querySelector('.js-hamburger-menu');
+  const hamburgerLins: NodeListOf<HTMLElement> | null = doc.querySelectorAll('.js-hamburger-links');
+
+  if (hamburgerTarget) {
+    new hamburger(hamburgerTarget, hamburgerDisplay, hamburgerLins);
+  }
 
   // アンカーリンク
   const anchorLinks: NodeListOf<HTMLAnchorElement> = doc.querySelectorAll('a[href^="#anc-"], a[href="#top"]');
@@ -197,24 +215,23 @@ import "scroll-behavior-polyfill";
   //     win.addEventListener('keyup', escKeyEvent);
   // }
 
-  const tabRoots: NodeListOf<HTMLAnchorElement> = doc.querySelectorAll('.js-tab-hook');
-  const tabRoots2: NodeListOf<HTMLAnchorElement> = doc.querySelectorAll('.js-tab-hook-02');
-  let displayTarget = null;
+  const tabRoots: NodeListOf<HTMLButtonElement> = doc.querySelectorAll('[aria-controls^="tabpanel-"]');
+  // const tabRoots2: NodeListOf<HTMLAnchorElement> = doc.querySelectorAll('.js-tab-hook-02');
 
   if (tabRoots.length) {
-    displayTarget = 'js-tab-news-items';
+    const displayTarget: NodeListOf<HTMLButtonElement> = doc.querySelectorAll('.js-tab-news-items');
 
     for (const item of tabRoots) {
       new tab(item, tabRoots, displayTarget);
     }
   }
 
-  if (tabRoots2.length) {
-    displayTarget = 'js-tab-member-items';
-    for (const item of tabRoots2) {
-      new tab(item, tabRoots2, displayTarget);
-    }
-  }
+  // if (tabRoots2.length) {
+  //   displayTarget = 'js-tab-member-items';
+  //   for (const item of tabRoots2) {
+  //     new tab(item, tabRoots2, displayTarget);
+  //   }
+  // }
 
   const moreShowRoots: NodeListOf<HTMLElement> = doc.querySelectorAll('.js-show-btn');
 

@@ -1,1 +1,31 @@
 /* stylelint-disable scss/dollar-variable-pattern */
+.hdg-category {
+  font-weight: 300;
+}
+@media print, screen and (max-width: 768px) {
+  .hdg-category {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .hdg-category {
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+  }
+}
+.hdg-category--en {
+  display: block;
+  font-weight: 300;
+  margin-top: -11px;
+}
+@media print, screen and (max-width: 768px) {
+  .hdg-category--en {
+    font-size: 1.4rem;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .hdg-category--en {
+    font-size: 1.6rem;
+  }
+}

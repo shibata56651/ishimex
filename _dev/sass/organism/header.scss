@@ -2,41 +2,78 @@
 @use "../definition/var" as *;
 
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
   z-index: 1000;
-
-  @include rwd(bpSp) {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 56px;
-    background: rgba($color: $color-white, $alpha: 50%);
-  }
+  background: rgba($color: $color-white, $alpha: 50%);
 }
 
 .header-contents {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
   @include rwd(bpSp) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     padding: 8px 16px;
   }
 }
 
 .header-logo {
+  @include rwd(bpSp, below) {
+    > h1 {
+      height: 20px;
+    }
+  }
+
   @include rwd(bpSp) {
-    height: 38px;
+    > h1 {
+      height: 38px;
+    }
   }
 
   &__img {
-    @include rwd(bpSp) {
-      height: 100%;
-    }
+    height: 100%;
   }
 }
 
 .header-nav {
+  @include rwd(bpSp, below) {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    height: calc(100vh - 56px);
+    background: rgba($color: $color-white, $alpha: 90%);
+
+    &:not(.is-active) {
+      display: none;
+    }
+  }
+
+  &__contents {
+    display: flex;
+    align-items: center;
+
+    @include rwd(bpSp, below) {
+      flex-direction: row-reverse;
+    }
+
+    @include rwd(bpSp) {
+      gap: 12px;
+    }
+  }
+
   > ul {
+    @include rwd(bpSp, below) {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: calc(100% - 24px);
+    }
+
     @include rwd(bpSp) {
       display: flex;
       align-items: center;
@@ -44,23 +81,171 @@
     }
   }
 
-  &__link {
+  &__button {
+    @include rwd(bpSp, below) {
+      position: relative;
+      display: block;
+      width: 56px;
+      height: 56px;
+      background: $color-white;
+
+      &::before,
+      &::after {
+        position: absolute;
+        content: "";
+        width: 26px;
+        height: 1px;
+        left: 15px;
+        background: $color-main;
+        transition: .3s;
+      }
+
+      &::before {
+        top: 18px;
+      }
+
+      &::after {
+        top: 36px;
+      }
+    }
+
     @include rwd(bpSp) {
-      font-weight: $weight-medium;
-      color: $color-black;
+      display: none;
+    }
+
+    &.is-active {
+      @include rwd(bpSp, below) {
+        &::before {
+          top: 28px;
+          transform: rotate(-45deg);
+        }
+
+        &::after {
+          top: 28px;
+          transform: rotate(45deg);
+        }
+
+        .header-nav {
+          &__button-text {
+            opacity: 0;
+          }
+        }
+      }
     }
   }
 
-  &__link-contact {
+  &__button-text {
+    @include rwd(bpSp, below) {
+      font-size: 0;
+      color: transparent;
+      transition: .3s;
+
+      &::before {
+        position: absolute;
+        content: "";
+        width: 26px;
+        height: 1px;
+        left: 15px;
+        background: $color-main;
+        top: 27px;
+        opacity: 1;
+      }
+    }
+  }
+
+  &__list {
+    @include rwd(bpSp, below) {
+      display: none;
+      text-align: center;
+      font-size: 2rem;
+
+      &:nth-of-type(n+2) {
+        margin-top: 32px;
+      }
+    }
+  }
+
+  &__link {
+    position: relative;
+    color: $color-black;
+
+    &::before {
+      position: absolute;
+      left: 0;
+      content: "";
+      width: 100%;
+      height: 1px;
+      background: $color-black;
+      bottom: 0;
+      transform: scale(0, 1);
+      transform-origin: right top;
+      transition: transform .3s;
+    }
+
+    &:hover {
+      &::before {
+        transform: scale(1, 1);
+        transform-origin: left top;
+      }
+    }
+
+    @include rwd(bpSp) {
+      font-weight: $weight-medium;
+      padding-bottom: 4px;
+    }
+  }
+}
+
+.header-btn-list {
+  > ul {
+    display: flex;
+    align-items: center;
+
+    @include rwd(bpSp) {
+      gap: 16px;
+    }
+  }
+
+  &__link {
     display: block;
+
+    @include rwd(bpSp, below) {
+      width: 56px;
+      height: 56px;
+      padding: 8px;
+      font-weight: $weight-medium;
+      color: $color-white;
+      text-align: center;
+    }
 
     @include rwd(bpSp) {
       width: 136px;
       padding: 4px 0;
       border-radius: 24px;
+      font-weight: $weight-medium;
       color: $color-white;
       text-align: center;
-      background: linear-gradient(90deg, rgb(3 47 232 / 100%) 0%, rgb(0 37 174 / 100%) 100%);
+    }
+
+    &--contact {
+      background: linear-gradient(90deg, #032fe8 0%, #3662ff 100%);
+    }
+
+    &--recruit {
+      background: linear-gradient(90deg, #05c3e5 0%, #4ee4ff 100%);
+    }
+  }
+
+  &__link-text {
+    @include rwd(bpSp, below) {
+      display: block;
+      font-size: .6rem;
+    }
+  }
+
+  &__icon {
+    @include rwd(bpSp) {
+      display: none !important;
     }
   }
 }

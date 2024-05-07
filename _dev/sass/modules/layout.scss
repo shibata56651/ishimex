@@ -1,2 +1,65 @@
 @use "../definition/mixin" as *;
 @use "../definition/var" as *;
+
+.category-lyt {
+  @include rwd(bpSp) {
+    display: flex;
+    gap: 80px;
+  }
+
+  &__img {
+    &:not(.is-active) {
+      display: none;
+    }
+  }
+
+  &__img-content {
+    width: 100%;
+
+    @include rwd(bpSp, below) {
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    @include rwd(bpSp) {
+      max-width: 540px;
+      clip-path: polygon(25% 0, 100% 0, 75% 100%, 0 100%);
+    }
+  }
+
+  &__text-content {
+    position: relative;
+
+    @include rwd(bpSp, below) {
+      margin-top: 20px;
+    }
+  }
+
+  &__link {
+    display: block;
+    padding-right: 16px;
+
+    &::after {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      content: "";
+      top: 58%;
+      right: 4px;
+      border-top: solid 1px $color-black;
+      border-right: solid 1px $color-black;
+      transform: rotate(45deg) translate(-50%, -50%);
+      transition: .3s;
+    }
+
+    &:hover {
+      &::after {
+        right: 0;
+      }
+    }
+  }
+
+  &__link-text {
+    color: $color-black;
+  }
+}

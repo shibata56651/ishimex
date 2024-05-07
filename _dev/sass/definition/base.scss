@@ -117,3 +117,33 @@ textarea {
     margin-top: 24px;
   }
 }
+
+.section {
+  &__base {
+    &:nth-of-type(even) {
+      background: $color-white;
+    }
+
+    &:nth-of-type(odd) {
+      background: $color-bg;
+    }
+
+    @include rwd(bpSp, below) {
+      padding: 16px 16px 24px;
+    }
+
+    @include rwd(bpSp) {
+      padding: 42px;
+    }
+  }
+
+  &__category {
+    @include rwd(bpSp, below) {
+      padding: 16px 16px 24px;
+    }
+
+    @include rwd(bpSp) {
+      padding: 80px 42px 42px;
+    }
+  }
+}

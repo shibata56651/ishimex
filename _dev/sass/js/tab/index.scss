@@ -10,7 +10,8 @@
             position: relative;
 
             &::before {
-              @include pseudo();
+              @include pseudo;
+
               bottom: 0;
               left: 50%;
               width: calc(100% - 40px);
@@ -25,8 +26,7 @@
 }
 
 .js-tab-item,
-.js-tab-news-items,
-.js-tab-member-items {
+.js-tab-news-items {
   display: block;
 
   [data-script-enabled="true"] & {

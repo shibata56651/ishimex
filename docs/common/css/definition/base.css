@@ -116,3 +116,30 @@ textarea {
     margin-top: 24px;
   }
 }
+
+.section__base:nth-of-type(even) {
+  background: #fff;
+}
+.section__base:nth-of-type(odd) {
+  background: #f1f1f1;
+}
+@media print, screen and (max-width: 768px) {
+  .section__base {
+    padding: 16px 16px 24px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .section__base {
+    padding: 42px;
+  }
+}
+@media print, screen and (max-width: 768px) {
+  .section__category {
+    padding: 16px 16px 24px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .section__category {
+    padding: 80px 42px 42px;
+  }
+}

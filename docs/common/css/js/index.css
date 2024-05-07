@@ -217,18 +217,15 @@
 }
 
 .js-tab-item,
-.js-tab-news-items,
-.js-tab-member-items {
+.js-tab-news-items {
   display: block;
 }
 [data-script-enabled=true] .js-tab-item,
-[data-script-enabled=true] .js-tab-news-items,
-[data-script-enabled=true] .js-tab-member-items {
+[data-script-enabled=true] .js-tab-news-items {
   display: none;
 }
 [data-script-enabled=true] .js-tab-item.is-active,
-[data-script-enabled=true] .js-tab-news-items.is-active,
-[data-script-enabled=true] .js-tab-member-items.is-active {
+[data-script-enabled=true] .js-tab-news-items.is-active {
   display: block;
 }
 

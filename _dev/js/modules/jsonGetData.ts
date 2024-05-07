@@ -15,7 +15,7 @@ export class jsonGetData {
       activeClass: 'is-active',
       changeClass: 'is-changing',
       pauseClass: 'is-pause',
-      jsonPath: '/common/data/newdata.json',
+      jsonPath: '/common/data/newsData.json',
       count: 0,
     };
 

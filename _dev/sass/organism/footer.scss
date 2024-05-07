@@ -3,9 +3,13 @@
 
 .footer {
   position: relative;
+  background: $color-white;
+
+  @include rwd(bpSp, below) {
+    border-top: solid 3px $color-main;
+  }
 
   @include rwd(bpSp) {
-    background: $color-bg;
     height: 300px;
     border-top: solid 6px $color-main;
     padding: 24px 12px;
@@ -15,19 +19,28 @@
 .footer-logo {
   display: inline-block;
 
+  @include rwd(bpSp, below) {
+    height: 40px;
+  }
+
   @include rwd(bpSp) {
     height: 50px;
   }
 
   &__img {
+    height: 100%;
+
     @include rwd(bpSp) {
-      height: 100%;
       object-fit: contain;
     }
   }
 }
 
 .footer-desc {
+  @include rwd(bpSp, below) {
+    margin: 8px 0 32px;
+  }
+
   @include rwd(bpSp) {
     padding-left: 40px;
     margin-top: 32px;
@@ -37,6 +50,18 @@
     @include rwd(bpSp) {
       display: flex;
       gap: 36px;
+    }
+  }
+
+  &__dt {
+    @include rwd(bpSp, below) {
+      border-bottom: solid 1px $color-gray-03;
+    }
+  }
+
+  &__dd {
+    @include rwd(bpSp, below) {
+      box-shadow: inset 0 0 15px -3px #777;
     }
   }
 
@@ -76,15 +101,78 @@
   &__contents-link {
     color: $color-black;
 
+    @include rwd(bpSp, below) {
+      position: relative;
+      display: block;
+      padding: 8px 36px 8px 12px;
+
+      &::before {
+        position: absolute;
+        top: 36%;
+        right: 18px;
+        width: 10px;
+        height: 10px;
+        content: "";
+        border-right: solid 1px $color-black;
+        border-bottom: solid 1px $color-black;
+        transform: rotate(45deg);
+        transition: .3s;
+      }
+    }
+
     @include rwd(bpSp) {
       font-weight: $weight-medium;
+    }
+
+    &.is-active {
+      @include rwd(bpSp, below) {
+        &::before {
+          transform: rotate(-135deg);
+        }
+      }
     }
   }
 }
 
 .footer-list {
+  @include rwd(bpSp, below) {
+    overflow: hidden;
+
+    &:not(.is-active) {
+      display: none;
+    }
+  }
+
   &__link {
     color: $color-black;
+
+    @include rwd(bpSp, below) {
+      position: relative;
+      display: block;
+      padding: 8px 30px 8px 0;
+
+      &::before {
+        position: absolute;
+        top: 40%;
+        right: 18px;
+        width: 6px;
+        height: 6px;
+        content: "";
+        border-right: solid 1px $color-black;
+        border-bottom: solid 1px $color-black;
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  &__list {
+    &:nth-of-type(n+2) {
+      .footer-list {
+        &__link {
+          border-top: solid 1px $color-gray-02;
+        }
+      }
+    }
   }
 }
 

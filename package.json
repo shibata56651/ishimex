@@ -72,6 +72,7 @@
     "npm": "8.9.0"
   },
   "dependencies": {
-    "@splidejs/splide": "^4.1.4"
+    "@splidejs/splide": "^4.1.4",
+    "connect-ssi": "^1.1.1"
   }
 }

@@ -4,6 +4,7 @@ const {src, dest, series, watch} = require('gulp');
  * const rename = require('gulp-rename');
  */
 const browserSync = require('browser-sync');
+const connectSSI = require('connect-ssi');
 const sass = require('gulp-sass')(require('sass'));
 
 // function ejsCompile(done) {
@@ -42,6 +43,13 @@ function browserSyncTask(done) {
         server: {
             baseDir: './docs/', // ルートとなるディレクトリを指定
         },
+        startPath: '/index.html',
+    middleware: [
+      connectSSI({
+        baseDir: './docs',
+        ext: '.html'
+      })
+    ]
     });
     done();
 }

@@ -1,27 +1,26 @@
 export class tab {
   o: { activeClass: string, tabItem: HTMLElement };
-  element: HTMLAnchorElement;
+  element: HTMLButtonElement;
   roots: NodeListOf<HTMLElement>;
-  tabItem: HTMLElement | null;
   displayItem: NodeListOf<HTMLElement> | null;
+  contentTarget: string | null;
   content: HTMLElement | null;
 
   /**
-   * @param  {HTMLAnchorElement} element rootとなる要素
+   * @param  {HTMLButtonElement} element rootとなる要素
    * @returns void
    */
-  constructor(element: HTMLAnchorElement, roots: NodeListOf<HTMLElement>, displayTarget: string) {
+  constructor(element: HTMLButtonElement, roots: NodeListOf<HTMLElement>, displayTarget: NodeListOf<HTMLElement>) {
     const defaultOptions = {
       activeClass: 'is-active',
-      tabItem: displayTarget,
     };
 
     this.o = Object.assign(defaultOptions);
     this.element = element;
     this.roots = roots;
-    this.tabItem = null;
-    this.displayItem = null;
-    this.content = document.getElementById(this.element.hash.substring(1));
+    this.displayItem = displayTarget;
+    this.contentTarget = this.element.getAttribute('aria-controls');
+    this.content = this.contentTarget ? document.getElementById(this.contentTarget) : null;
 
     this.init();
   }
@@ -37,11 +36,9 @@ export class tab {
   }
 
   /**
-   * @param  {MouseEvent} e 発火ボタンのイベント
+   * @returns 発火ボタンのイベント
    */
-  clickHandler(e: MouseEvent) {
-    e.preventDefault();
-
+  clickHandler() {
     for (const item of this.roots) {
       item.parentElement?.classList.remove(this.o.activeClass);
     }
@@ -50,11 +47,6 @@ export class tab {
       for (const item of this.displayItem) {
         item.classList.remove(this.o.activeClass);
       }
-    }
-
-    if (this.element.getAttribute('href')) {
-      const href = this.element.getAttribute('href')?.substring(1);
-      href ? this.tabItem = document.getElementById(href) : this.tabItem = null;
     }
 
     this.element.parentElement?.classList.add(this.o.activeClass);

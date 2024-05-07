@@ -14,7 +14,7 @@ export class xmlGetData {
       activeClass: 'is-active',
       changeClass: 'is-changing',
       pauseClass: 'is-pause',
-      xmlPath: '/common/data/newdata.xml',
+      xmlPath: '/common/data/newsData.xml',
       count: 0,
     };
 
@@ -35,7 +35,7 @@ export class xmlGetData {
   }
 
   /**
-   * ページロード時にスライドショーを再生する
+   * ページロード時に情報を取得
    *
    * @returns void
    */
@@ -49,19 +49,51 @@ export class xmlGetData {
       const parser = new DOMParser();
       const sitemap = parser.parseFromString(data, "application/xml");
 
+      const nowDate = new Date();
+      const nowYear = String(nowDate.getFullYear());
+      const nowMonth = String(nowDate.getMonth() + 1).padStart(2, '0');
+      const nowDay = String(nowDate.getDate()).padStart(2, '0');
+      let displayCount = 0;
+
       this.items = sitemap.querySelectorAll('item');
       this.ul_element = document.createElement('ul');
 
         for(let data of this.items) {
           const id = data.querySelector('id');
 
-          if (this.count === Number(id?.textContent)) {
-            const li_element = document.createElement('li');
-            const text = data.querySelector('text');
-            const last_update = data.querySelector('lastmod');
+          if (displayCount <= 4 && this.count === Number(id?.innerHTML)) {
+            const listingDate = data.querySelector('listingDate');
+            const limitDate = data.querySelector('limitDate');
+            const anchor = data.querySelector('anchor');
 
-            li_element.innerHTML = `text：${text?.textContent}<br>最終更新日：${last_update?.textContent}`;
-            this.ul_element.appendChild(li_element);
+            if (listingDate ? (limitDate ? (limitDate.innerHTML.split('/').join('') > nowYear+nowMonth+nowDay && listingDate.innerHTML.split('/').join('') <= nowYear+nowMonth+nowDay) : (listingDate.innerHTML.split('/').join('') <= nowYear+nowMonth+nowDay)) : false) {
+              displayCount++;
+              const text = data.querySelector('text');
+
+              const liElement = document.createElement('li');
+              const anchorParentElement = document.createElement('a');
+              const divChildDateElement = document.createElement('div');
+              const divChildContentsElement = document.createElement('div');
+              const spanDateElement = document.createElement('span');
+              const spanContentsElement = document.createElement('span');
+
+              anchorParentElement.setAttribute('href', `${anchor?.innerHTML}`)
+              liElement.appendChild(anchorParentElement);
+              anchorParentElement.appendChild(divChildDateElement);
+              anchorParentElement.appendChild(divChildContentsElement);
+              divChildDateElement.appendChild(spanDateElement);
+              divChildContentsElement.appendChild(spanContentsElement);
+              liElement.classList.add('news-contents-list__list');
+
+              anchorParentElement.classList.add('news-contents-list__anchor');
+              divChildDateElement.classList.add('news-contents-list__date');
+              divChildContentsElement.classList.add('news-contents-list__content');
+              spanDateElement.classList.add('news-contents-list__date-text');
+              spanContentsElement.classList.add('news-contents-list__content-text');
+              spanDateElement.innerHTML = `${listingDate?.textContent}`;
+              spanContentsElement.innerHTML = `${text?.textContent}`;
+              this.ul_element.appendChild(liElement);
+            }
           }
       }
 

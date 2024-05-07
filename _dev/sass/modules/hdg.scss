@@ -1,2 +1,30 @@
 @use "../definition/mixin" as *;
 @use "../definition/var" as *;
+
+.hdg-category {
+  font-weight: $weight-light;
+
+  @include rwd(bpSp, below) {
+    font-size: 2.2rem;
+    margin-bottom: 30px;
+  }
+
+  @include rwd(bpSp) {
+    font-size: 2.8rem;
+    margin-bottom: 40px;
+  }
+
+  &--en {
+    display: block;
+    font-weight: $weight-light;
+    margin-top: -11px;
+
+    @include rwd(bpSp, below) {
+      font-size: 1.4rem;
+    }
+
+    @include rwd(bpSp) {
+      font-size: 1.6rem;
+    }
+  }
+}
