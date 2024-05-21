@@ -1,2 +1,35 @@
 @use "../definition/mixin" as *;
 @use "../definition/var" as *;
+
+.company-policy {
+  display: block;
+  font-weight: $weight-medium;
+
+  @include rwd(bpSp, below) {
+    font-size: 1.8rem;
+    margin-bottom: 60px;
+  }
+
+  @include rwd(bpSp) {
+    font-size: 2.2rem;
+    margin-bottom: 80px;
+  }
+}
+
+.ceo-president {
+  display: block;
+  text-align: right;
+
+  @include rwd(bpSp, below) {
+    margin-top: 20px;
+  }
+
+  @include rwd(bpSp) {
+    margin-top: 40px;
+  }
+
+  &__name {
+    display: inline-block;
+    margin-left: 12px;
+  }
+}

@@ -1,1 +1,36 @@
 /* stylelint-disable scss/dollar-variable-pattern */
+.company-policy {
+  display: block;
+  font-weight: 500;
+}
+@media print, screen and (max-width: 768px) {
+  .company-policy {
+    font-size: 1.8rem;
+    margin-bottom: 60px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .company-policy {
+    font-size: 2.2rem;
+    margin-bottom: 80px;
+  }
+}
+
+.ceo-president {
+  display: block;
+  text-align: right;
+}
+@media print, screen and (max-width: 768px) {
+  .ceo-president {
+    margin-top: 20px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .ceo-president {
+    margin-top: 40px;
+  }
+}
+.ceo-president__name {
+  display: inline-block;
+  margin-left: 12px;
+}

@@ -94,6 +94,16 @@ textarea {
   min-height: 200px;
 }
 
+p {
+  @include rwd(bpSp, below) {
+    margin-bottom: 26px;
+  }
+
+  @include rwd(bpSp) {
+    margin-bottom: 36px;
+  }
+}
+
 .pc-hidden {
   @include rwd(bpTab) {
     display: none;
@@ -139,7 +149,7 @@ textarea {
 
   &__category {
     @include rwd(bpSp, below) {
-      padding: 16px 16px 24px;
+      padding: 60px 16px 24px;
     }
 
     @include rwd(bpSp) {

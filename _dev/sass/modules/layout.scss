@@ -5,24 +5,41 @@
   @include rwd(bpSp) {
     display: flex;
     gap: 80px;
+    justify-content: center;
+    margin-top: 60px;
+    margin-left: -60px;
+  }
+
+  @include rwd(bpSp, below) {
+    margin-top: 52px;
   }
 
   &__img {
+    @include rwd(bpSp, below) {
+      position: absolute;
+    }
+
+    @include rwd(bpSp) {
+      height: 548px;
+      object-fit: cover;
+    }
+
     &:not(.is-active) {
       display: none;
     }
   }
 
   &__img-content {
+    position: relative;
     width: 100%;
 
     @include rwd(bpSp, below) {
-      max-width: 360px;
-      margin: 0 auto;
+      height: calc(192px + (400 - 192) * ((100vw - 320px) / (768 - 320)));
+      clip-path: polygon(25% 0, 100% 0, 75% 100%, 0 100%);
     }
 
     @include rwd(bpSp) {
-      max-width: 540px;
+      width: clamp(640px, 21.429rem + 29.02vw, 900px);
       clip-path: polygon(25% 0, 100% 0, 75% 100%, 0 100%);
     }
   }
@@ -32,6 +49,10 @@
 
     @include rwd(bpSp, below) {
       margin-top: 20px;
+    }
+
+    @include rwd(bpSp) {
+      padding-top: 8px;
     }
   }
 

@@ -12940,6 +12940,8 @@ var accordion_1 = __webpack_require__(/*! ./modules/accordion */ "./_dev/js/modu
 
 var hamburger_1 = __webpack_require__(/*! ./modules/hamburger */ "./_dev/js/modules/hamburger.ts");
 
+var categoryCarousel_1 = __webpack_require__(/*! ./modules/categoryCarousel */ "./_dev/js/modules/categoryCarousel.ts");
+
 var fade_1 = __webpack_require__(/*! ./modules/fade */ "./_dev/js/modules/fade.ts");
 
 var SmoothScroll_1 = __webpack_require__(/*! ./modules/SmoothScroll */ "./_dev/js/modules/SmoothScroll.ts");
@@ -12965,18 +12967,24 @@ __webpack_require__(/*! @babel/polyfill */ "./node_modules/@babel/polyfill/lib/i
 __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behavior-polyfill/dist/index.js");
 
 (function (win, doc) {
+  var displayWidth = window.innerWidth;
   var topMvTarget = doc.querySelector('.js__top-mv');
 
   if (topMvTarget) {
     new topMv_1.topMv(topMvTarget);
   }
 
-  new splide_1.default('.splide', {
-    type: 'loop',
-    autoplay: true,
-    pauseOnHover: false,
-    interval: 10000
-  }).mount();
+  var splideTarget = doc.querySelector('.splide');
+
+  if (splideTarget) {
+    new splide_1.default('.splide', {
+      type: 'loop',
+      autoplay: true,
+      pauseOnHover: false,
+      interval: 10000
+    }).mount();
+  }
+
   var footerTarget = doc.querySelectorAll('.js-footer-accordion-roots');
 
   var _iterator = _createForOfIteratorHelper(footerTarget),
@@ -12987,10 +12995,10 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
       var root = _step.value;
       var category = 'footer';
 
-      var _item5 = root.querySelector('.js-accordion-target');
+      var _item6 = root.querySelector('.js-accordion-target');
 
       var display = root.querySelector('.js-accordion-display');
-      new accordion_1.accordion(_item5, display, footerTarget, category);
+      new accordion_1.accordion(_item6, display, footerTarget, category);
     }
   } catch (err) {
     _iterator.e(err);
@@ -13004,38 +13012,59 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
 
   if (hamburgerTarget) {
     new hamburger_1.hamburger(hamburgerTarget, hamburgerDisplay, hamburgerLins);
+  }
+
+  var categoryImgRoots = doc.querySelectorAll('.js-category-carousel__img');
+  var categoryLinkRoots = doc.querySelectorAll('.js-category-carousel__links');
+
+  if (displayWidth <= 768) {
+    new categoryCarousel_1.categoryCarousel(null, categoryImgRoots, categoryLinkRoots, true);
+  } else {
+    var _iterator2 = _createForOfIteratorHelper(categoryLinkRoots),
+        _step2;
+
+    try {
+      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+        var item = _step2.value;
+        new categoryCarousel_1.categoryCarousel(item, categoryImgRoots, categoryLinkRoots, false);
+      }
+    } catch (err) {
+      _iterator2.e(err);
+    } finally {
+      _iterator2.f();
+    }
   } // アンカーリンク
 
 
   var anchorLinks = doc.querySelectorAll('a[href^="#anc-"], a[href="#top"]');
   var urlHash = doc.location.hash;
 
-  var _iterator2 = _createForOfIteratorHelper(anchorLinks),
-      _step2;
-
-  try {
-    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-      var _item6 = _step2.value;
-      var linkItem = _item6;
-      new SmoothScroll_1.SmoothScroll(linkItem, urlHash);
-    } // モーダル
-
-  } catch (err) {
-    _iterator2.e(err);
-  } finally {
-    _iterator2.f();
-  }
-
-  var modalRoots = doc.querySelectorAll('.js-modal-hook');
-  var modalOverlay = doc.getElementById('js-modal-overlay');
-
-  var _iterator3 = _createForOfIteratorHelper(modalRoots),
+  var _iterator3 = _createForOfIteratorHelper(anchorLinks),
       _step3;
 
   try {
     for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
       var _item7 = _step3.value;
-      modalOverlay && new modal_1.Modal(_item7, modalOverlay);
+      var linkItem = _item7;
+      new SmoothScroll_1.SmoothScroll(linkItem, urlHash);
+    } // モーダル
+
+  } catch (err) {
+    _iterator3.e(err);
+  } finally {
+    _iterator3.f();
+  }
+
+  var modalRoots = doc.querySelectorAll('.js-modal-hook');
+  var modalOverlay = doc.getElementById('js-modal-overlay');
+
+  var _iterator4 = _createForOfIteratorHelper(modalRoots),
+      _step4;
+
+  try {
+    for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+      var _item8 = _step4.value;
+      modalOverlay && new modal_1.Modal(_item8, modalOverlay);
     } // const modalRoots = doc.querySelectorAll('.js-modal-hook');
     // if (modalRoots) {
     //     const modalClose = doc.querySelectorAll('.js-modal-close');
@@ -13161,9 +13190,9 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
     // }
 
   } catch (err) {
-    _iterator3.e(err);
+    _iterator4.e(err);
   } finally {
-    _iterator3.f();
+    _iterator4.f();
   }
 
   var tabRoots = doc.querySelectorAll('[aria-controls^="tabpanel-"]'); // const tabRoots2: NodeListOf<HTMLAnchorElement> = doc.querySelectorAll('.js-tab-hook-02');
@@ -13171,18 +13200,18 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
   if (tabRoots.length) {
     var displayTarget = doc.querySelectorAll('.js-tab-news-items');
 
-    var _iterator4 = _createForOfIteratorHelper(tabRoots),
-        _step4;
+    var _iterator5 = _createForOfIteratorHelper(tabRoots),
+        _step5;
 
     try {
-      for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
-        var item = _step4.value;
-        new tab_1.tab(item, tabRoots, displayTarget);
+      for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
+        var _item = _step5.value;
+        new tab_1.tab(_item, tabRoots, displayTarget);
       }
     } catch (err) {
-      _iterator4.e(err);
+      _iterator5.e(err);
     } finally {
-      _iterator4.f();
+      _iterator5.f();
     }
   } // if (tabRoots2.length) {
   //   displayTarget = 'js-tab-member-items';
@@ -13195,18 +13224,18 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
   var moreShowRoots = doc.querySelectorAll('.js-show-btn');
 
   if (moreShowRoots) {
-    var _iterator5 = _createForOfIteratorHelper(moreShowRoots),
-        _step5;
+    var _iterator6 = _createForOfIteratorHelper(moreShowRoots),
+        _step6;
 
     try {
-      for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
-        var _item = _step5.value;
-        new moreShow_1.moreShow(_item);
+      for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
+        var _item2 = _step6.value;
+        new moreShow_1.moreShow(_item2);
       }
     } catch (err) {
-      _iterator5.e(err);
+      _iterator6.e(err);
     } finally {
-      _iterator5.f();
+      _iterator6.f();
     }
   }
 
@@ -13290,37 +13319,37 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
   var fadeRoots = doc.querySelectorAll('.js-fade-roots');
 
   if (fadeRoots) {
-    var _iterator6 = _createForOfIteratorHelper(fadeRoots),
-        _step6;
+    var _iterator7 = _createForOfIteratorHelper(fadeRoots),
+        _step7;
 
     try {
-      for (_iterator6.s(); !(_step6 = _iterator6.n()).done;) {
-        var _item2 = _step6.value;
-        new fade_1.fade(_item2);
+      for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
+        var _item3 = _step7.value;
+        new fade_1.fade(_item3);
       }
     } catch (err) {
-      _iterator6.e(err);
+      _iterator7.e(err);
     } finally {
-      _iterator6.f();
+      _iterator7.f();
     }
   }
 
   var toggleRoots = doc.querySelectorAll('.js-toggle-roots');
 
   if (toggleRoots.length) {
-    var _iterator7 = _createForOfIteratorHelper(toggleRoots),
-        _step7;
+    var _iterator8 = _createForOfIteratorHelper(toggleRoots),
+        _step8;
 
     try {
-      for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-        var _item3 = _step7.value;
-        var togglejudge = _item3.dataset.toggleJudge;
-        new toggle_1.Toggle(_item3, toggleRoots, togglejudge);
+      for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
+        var _item4 = _step8.value;
+        var togglejudge = _item4.dataset.toggleJudge;
+        new toggle_1.Toggle(_item4, toggleRoots, togglejudge);
       }
     } catch (err) {
-      _iterator7.e(err);
+      _iterator8.e(err);
     } finally {
-      _iterator7.f();
+      _iterator8.f();
     }
   }
 
@@ -13351,19 +13380,19 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
   if (xmlRoots.length) {
     var num = 0;
 
-    var _iterator8 = _createForOfIteratorHelper(xmlRoots),
-        _step8;
+    var _iterator9 = _createForOfIteratorHelper(xmlRoots),
+        _step9;
 
     try {
-      for (_iterator8.s(); !(_step8 = _iterator8.n()).done;) {
-        var _item4 = _step8.value;
+      for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
+        var _item5 = _step9.value;
         num += 1;
-        new xmlGetData_1.xmlGetData(_item4, num);
+        new xmlGetData_1.xmlGetData(_item5, num);
       }
     } catch (err) {
-      _iterator8.e(err);
+      _iterator9.e(err);
     } finally {
-      _iterator8.f();
+      _iterator9.f();
     }
   } // アンカーリンク
 
@@ -13701,6 +13730,154 @@ var accordion = /*#__PURE__*/function () {
 }();
 
 exports.accordion = accordion;
+
+/***/ }),
+
+/***/ "./_dev/js/modules/categoryCarousel.ts":
+/*!*********************************************!*\
+  !*** ./_dev/js/modules/categoryCarousel.ts ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, exports) {
+
+"use strict";
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+Object.defineProperty(exports, "__esModule", ({
+  value: true
+}));
+exports.categoryCarousel = void 0;
+
+var categoryCarousel = /*#__PURE__*/function () {
+  /**
+   * @param  {Element} elements rootとなる要素
+   * @returns void
+   */
+  function categoryCarousel(item, categoryImgRoots, categoryLinkRoots, spSizeBoolean) {
+    _classCallCheck(this, categoryCarousel);
+
+    var defaultOptions = {
+      activeClass: 'is-active'
+    };
+    this.o = Object.assign(defaultOptions);
+    this.item = item;
+    this.categoryImgRoots = categoryImgRoots;
+    this.categoryLinkRoots = categoryLinkRoots;
+    this.spSizeBoolean = spSizeBoolean;
+    this.displayWidth = window.innerWidth;
+    this.currentIndex = 0;
+    this.previousIndex = undefined;
+    this.init();
+  }
+  /**
+   * 初期化処理
+   *
+   * @returns void
+   */
+
+
+  _createClass(categoryCarousel, [{
+    key: "init",
+    value: function init() {
+      var _a, _b;
+
+      if (this.spSizeBoolean) {
+        // console.log(this.categoryImgRoots)
+        setInterval(this.changeImage.bind(this), 4000);
+      } else {
+        (_a = this.item) === null || _a === void 0 ? void 0 : _a.addEventListener('mouseover', this.activeEvent.bind(this));
+        (_b = this.item) === null || _b === void 0 ? void 0 : _b.addEventListener('focus', this.activeEvent.bind(this));
+      }
+    }
+  }, {
+    key: "FadeAnimation",
+    value: function FadeAnimation(target, kind) {
+      target.style.opacity = '0';
+      var fadeAnimation = kind === 'open' ? target.animate({
+        opacity: ['0', '1']
+      }, {
+        duration: 1000,
+        easing: 'ease'
+      }) : target.animate({
+        opacity: ['1', '0']
+      }, {
+        duration: 1000,
+        easing: 'ease'
+      });
+
+      fadeAnimation.onfinish = function () {
+        kind === 'open' ? target.style.opacity = '1' : target.style.opacity = '0'; // kind === 'open' ? target.classList.add(this.o.activeClass) : target.classList.remove(this.o.activeClass);
+      };
+    }
+  }, {
+    key: "changeImage",
+    value: function changeImage() {
+      // if (this.currentIndex === 0) {
+      //   this.categoryImgRoots && this.categoryImgRoots[0].classList.add('is-active');
+      //   this.currentIndex++;
+      // } else {
+      // 現在の画像からis-activeクラスを削除
+      this.categoryImgRoots && this.categoryImgRoots[this.currentIndex].classList.remove(this.o.activeClass);
+      this.categoryImgRoots && this.FadeAnimation(this.categoryImgRoots[this.currentIndex], 'close');
+
+      if (this.categoryImgRoots && this.categoryImgRoots.length - 1 === this.currentIndex) {
+        this.currentIndex = -1;
+      }
+
+      this.currentIndex++;
+      this.categoryImgRoots && this.categoryImgRoots[this.currentIndex].classList.add(this.o.activeClass);
+      this.categoryImgRoots && this.FadeAnimation(this.categoryImgRoots[this.currentIndex], 'open'); // }
+    }
+    /**
+     * ページロード時に情報を取得
+     *
+     * @returns void
+     */
+
+  }, {
+    key: "activeEvent",
+    value: function activeEvent() {
+      var _this = this;
+
+      // this.categoryImgRoots?.forEach((item) => {
+      // setTimeout(() => {
+      //     item.classList.add(this.o.activeClass);
+      //   }, 4000);
+      // })
+      var _a, _b, _c, _d; // 画像のアクティブクラス初期化
+
+
+      (_a = this.categoryImgRoots) === null || _a === void 0 ? void 0 : _a.forEach(function (item) {
+        item.classList.remove(_this.o.activeClass);
+      }); // リンクのアクティブクラス初期化
+
+      (_b = this.categoryLinkRoots) === null || _b === void 0 ? void 0 : _b.forEach(function (item) {
+        item.classList.remove(_this.o.activeClass);
+      }); // 表示画像処理
+
+      var linkTarget = (_c = this.item) === null || _c === void 0 ? void 0 : _c.dataset.categoryLink;
+      (_d = this.categoryImgRoots) === null || _d === void 0 ? void 0 : _d.forEach(function (item) {
+        var imgTarget = item.dataset.categoryImg;
+
+        if (linkTarget === imgTarget) {
+          item.classList.add(_this.o.activeClass);
+          _this.previousIndex = imgTarget;
+
+          _this.FadeAnimation(item, 'open');
+        }
+      }); // this.display && this.FadeAnimation(this.display);
+    }
+  }]);
+
+  return categoryCarousel;
+}();
+
+exports.categoryCarousel = categoryCarousel;
 
 /***/ }),
 

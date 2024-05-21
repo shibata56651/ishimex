@@ -2,21 +2,35 @@
 @use "../definition/var" as *;
 
 .link-list-category {
+  margin: 0 auto;
+
+  @include rwd(bpSp, below) {
+    max-width: 600px;
+  }
+
   @include rwd(bpSp) {
     max-width: 456px;
-    margin: 0 auto;
   }
 
   >ul {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    @include rwd(bpSp, below) {
+      gap: 24px 20px;
+    }
+
     @include rwd(bpSp) {
-      display: flex;
-      flex-wrap: wrap;
       gap: 32px 26px;
-      width: 100%;
     }
   }
 
   &__list {
+    @include rwd(bpSp, below) {
+      width: calc((100% / 2) - 20px);
+    }
+
     @include rwd(bpSp) {
       height: 100%;
     }
@@ -24,6 +38,7 @@
 
   &__link {
     position: relative;
+    display: block;
     color: $color-black;
 
     @include rwd(bpSp) {
@@ -45,8 +60,8 @@
       transition: .3s;
 
       @include rwd(bpSp, below) {
-        width: 20px;
-        height: 20px;
+        width: 26px;
+        height: 26px;
       }
 
       @include rwd(bpSp) {
@@ -61,10 +76,10 @@
       transform: rotate(45deg) translate(-50%, -50%);
 
       @include rwd(bpSp, below) {
-        bottom: 12px;
-        right: 20px;
-        width: 8px;
-        height: 8px;
+        bottom: 3px;
+        right: 12px;
+        width: 6px;
+        height: 6px;
       }
 
       @include rwd(bpSp) {
@@ -85,5 +100,116 @@
         border-right: solid 1px $color-white;
       }
     }
+  }
+}
+
+.list-bubble {
+  @include rwd(bpSp) {
+    margin-bottom: 60px;
+  }
+
+  &__list {
+    position: relative;
+
+    @include rwd(bpSp) {
+      padding-left: 20px;
+    }
+
+    &:nth-of-type(n+2) {
+      @include rwd(bpSp) {
+        margin-top: 24px;
+      }
+    }
+
+    &::before {
+      position: absolute;
+      top: 13px;
+      left: 6px;
+      width: 12px;
+      height: 12px;
+      content: "";
+      transform: translate(-50%, -50%);
+      border-radius: 1000px;
+      background: $color-main;
+    }
+  }
+}
+
+.list-unit {
+  @include rwd(bpSp) {
+    margin-bottom: 60px;
+  }
+
+  &__list {
+    &:nth-of-type(n+2) {
+      @include rwd(bpSp) {
+        margin-top: 24px;
+      }
+    }
+  }
+
+  &__unit {
+    display: inline-block;
+
+    @include rwd(bpSp) {
+      margin-right: 8px;
+    }
+  }
+}
+
+.category-equipment-list {
+  >ul {
+    display: flex;
+    flex-wrap: wrap;
+    border-radius: 14px;
+    overflow: hidden;
+  }
+
+  &__list {
+    height: 120px;
+
+    @include rwd(bpSp, below) {
+      width: calc(100% / 2);
+    }
+
+    @include rwd(bpSp) {
+      width: calc(100% / 4);
+    }
+  }
+
+  &__img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    transition: .3s;
+    filter: brightness(.7);
+  }
+
+  &__link {
+    position: relative;
+    display: block;
+    height: 100%;
+    overflow: hidden;
+
+    &:hover {
+      .category-equipment-list {
+        &__img {
+          transform: scale(1.1);
+        }
+      }
+    }
+  }
+
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    color: $color-white;
+    font-weight: $weight-medium;
+    transform: translate(-50%, -50%);
   }
 }

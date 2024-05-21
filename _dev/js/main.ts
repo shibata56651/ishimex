@@ -2,6 +2,7 @@ import "./init";
 import { topMv } from './modules/topMv';
 import { accordion } from './modules/accordion';
 import { hamburger } from './modules/hamburger';
+import { categoryCarousel } from './modules/categoryCarousel';
 import { fade } from './modules/fade';
 import { SmoothScroll } from './modules/SmoothScroll';
 import { tab } from './modules/tab';
@@ -16,18 +17,24 @@ import "@babel/polyfill";
 import "scroll-behavior-polyfill";
 
 ((win, doc) => {
+  const displayWidth = window.innerWidth;
+
   const topMvTarget: HTMLElement | null = doc.querySelector('.js__top-mv');
 
   if (topMvTarget) {
     new topMv(topMvTarget);
   }
 
-  new Splide('.splide', {
-    type: 'loop',
-    autoplay: true,
-    pauseOnHover: false,
-    interval: 10000,
-  }).mount();
+  const splideTarget: HTMLElement | null = doc.querySelector('.splide');
+
+  if (splideTarget) {
+    new Splide('.splide', {
+      type: 'loop',
+      autoplay: true,
+      pauseOnHover: false,
+      interval: 10000,
+    }).mount();
+  }
 
   const footerTarget: NodeListOf<Element> | null = doc.querySelectorAll('.js-footer-accordion-roots');
 
@@ -44,6 +51,17 @@ import "scroll-behavior-polyfill";
 
   if (hamburgerTarget) {
     new hamburger(hamburgerTarget, hamburgerDisplay, hamburgerLins);
+  }
+
+  const categoryImgRoots: NodeListOf<HTMLElement> | null = doc.querySelectorAll('.js-category-carousel__img');
+  const categoryLinkRoots: NodeListOf<HTMLElement> | null = doc.querySelectorAll('.js-category-carousel__links');
+
+  if (displayWidth <= 768) {
+    new categoryCarousel(null, categoryImgRoots, categoryLinkRoots, true);
+  } else {
+    for (const item of categoryLinkRoots) {
+      new categoryCarousel(item, categoryImgRoots, categoryLinkRoots, false);
+    }
   }
 
   // アンカーリンク

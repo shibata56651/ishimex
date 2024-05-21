@@ -91,6 +91,17 @@ textarea {
   min-height: 200px;
 }
 
+@media print, screen and (max-width: 768px) {
+  p {
+    margin-bottom: 26px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  p {
+    margin-bottom: 36px;
+  }
+}
+
 @media print, screen and (min-width: 1025px) {
   .pc-hidden {
     display: none;
@@ -135,7 +146,7 @@ textarea {
 }
 @media print, screen and (max-width: 768px) {
   .section__category {
-    padding: 16px 16px 24px;
+    padding: 60px 16px 24px;
   }
 }
 @media print, screen and (min-width: 769px) {

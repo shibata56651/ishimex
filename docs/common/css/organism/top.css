@@ -252,41 +252,6 @@
   color: #222;
 }
 
-.news-link {
-  display: block;
-  text-align: right;
-}
-@media print, screen and (max-width: 768px) {
-  .news-link {
-    margin-top: 20px;
-  }
-}
-@media print, screen and (min-width: 769px) {
-  .news-link {
-    margin-top: 30px;
-  }
-}
-.news-link__link {
-  position: relative;
-  color: #222;
-  padding-right: 16px;
-}
-.news-link__link::after {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  content: "";
-  top: 58%;
-  right: 4px;
-  border-top: solid 1px #222;
-  border-right: solid 1px #222;
-  transform: rotate(45deg) translate(-50%, -50%);
-  transition: 0.3s;
-}
-.news-link__link:hover::after {
-  right: 0;
-}
-
 @media print, screen and (min-width: 769px) {
   .news-desc > dl {
     display: flex;
@@ -610,61 +575,61 @@
 }
 
 @media print, screen and (max-width: 768px) {
-  .top-card-list {
+  .category-card-list {
     margin-top: 20px;
   }
 }
 @media print, screen and (min-width: 769px) {
-  .top-card-list {
+  .category-card-list {
     margin-top: 40px;
   }
 }
 @media print, screen and (min-width: 769px) {
-  .top-card-list__wrap {
+  .category-card-list__wrap {
     display: flex;
     gap: 26px;
   }
 }
-.top-card-list__list {
+.category-card-list__list {
   box-shadow: 0 0 12px rgba(34, 34, 34, 0.3);
 }
 @media print, screen and (max-width: 768px) {
-  .top-card-list__list:nth-of-type(n+2) {
+  .category-card-list__list:nth-of-type(n+2) {
     margin-top: 30px;
   }
 }
 @media print, screen and (min-width: 769px) {
-  .top-card-list__list {
+  .category-card-list__list {
     width: calc(33.3333333333% - 26px);
   }
 }
-.top-card-list__img {
+.category-card-list__img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: 0.3s;
 }
-.top-card-list__link {
+.category-card-list__link {
   position: relative;
   display: block;
   color: #222;
   height: 100%;
 }
 @media print, screen and (max-width: 768px) {
-  .top-card-list__link {
+  .category-card-list__link {
     padding: 8px 8px 30px;
   }
 }
 @media print, screen and (min-width: 769px) {
-  .top-card-list__link {
+  .category-card-list__link {
     padding: 12px 12px 60px;
   }
 }
-.top-card-list__link::before, .top-card-list__link::after {
+.category-card-list__link::before, .category-card-list__link::after {
   position: absolute;
   content: "";
 }
-.top-card-list__link::before {
+.category-card-list__link::before {
   bottom: 12px;
   right: 12px;
   border-radius: 1000px;
@@ -672,24 +637,24 @@
   transition: 0.3s;
 }
 @media print, screen and (max-width: 768px) {
-  .top-card-list__link::before {
+  .category-card-list__link::before {
     width: 20px;
     height: 20px;
   }
 }
 @media print, screen and (min-width: 769px) {
-  .top-card-list__link::before {
+  .category-card-list__link::before {
     width: 42px;
     height: 42px;
   }
 }
-.top-card-list__link::after {
+.category-card-list__link::after {
   border-top: solid 1px #032fe8;
   border-right: solid 1px #032fe8;
   transform: rotate(45deg) translate(-50%, -50%);
 }
 @media print, screen and (max-width: 768px) {
-  .top-card-list__link::after {
+  .category-card-list__link::after {
     bottom: 12px;
     right: 20px;
     width: 8px;
@@ -697,40 +662,40 @@
   }
 }
 @media print, screen and (min-width: 769px) {
-  .top-card-list__link::after {
+  .category-card-list__link::after {
     bottom: 18px;
     right: 30px;
     width: 12px;
     height: 12px;
   }
 }
-.top-card-list__link:hover::before {
+.category-card-list__link:hover::before {
   background: #032fe8;
 }
-.top-card-list__link:hover::after {
+.category-card-list__link:hover::after {
   border-top: solid 1px #fff;
   border-right: solid 1px #fff;
 }
-.top-card-list__link:hover .top-card-list__img {
+.category-card-list__link:hover .category-card-list__img {
   transform: scale(1.1);
 }
-.top-card-list__img-wrap {
+.category-card-list__img-wrap {
   overflow: hidden;
 }
 @media print, screen and (min-width: 769px) {
-  .top-card-list__img-wrap {
+  .category-card-list__img-wrap {
     height: 210px;
   }
 }
-.top-card-list__text-wrap {
+.category-card-list__text-wrap {
   margin-top: 12px;
 }
-.top-card-list__hdg {
+.category-card-list__hdg {
   display: inline-block;
   font-weight: 500;
 }
 @media print, screen and (min-width: 769px) {
-  .top-card-list__hdg {
+  .category-card-list__hdg {
     margin-bottom: 20px;
   }
 }

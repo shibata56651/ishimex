@@ -14,6 +14,20 @@
     margin-bottom: 40px;
   }
 
+  &__medium {
+    font-weight: $weight-light;
+
+    @include rwd(bpSp, below) {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    @include rwd(bpSp) {
+      font-size: 2.4rem;
+      margin-bottom: 30px;
+    }
+  }
+
   &--en {
     display: block;
     font-weight: $weight-light;
