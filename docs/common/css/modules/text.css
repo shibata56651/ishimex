@@ -34,3 +34,13 @@
   display: inline-block;
   margin-left: 12px;
 }
+
+.lead-text {
+  display: block;
+}
+.lead-text > em {
+  font-weight: 500;
+}
+.lead-text + * {
+  margin-top: 18px;
+}

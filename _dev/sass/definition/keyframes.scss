@@ -1,4 +1,16 @@
-@keyframes mvWrapAnime {
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(100px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRightInAnimation {
   0% {
     opacity: 0;
     transform: translateX(300px);
@@ -10,17 +22,15 @@
   }
 }
 
-@keyframes megamenuStartAnime {
+@keyframes slideLightInAnimation {
   0% {
-    display: none;
     opacity: 0;
-    transform: translateY(-30px);
+    transform: translateX(-300px);
   }
 
   100% {
-    display: block;
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 }
 
@@ -44,7 +54,7 @@
   }
 
   50% {
-    transform: translate(50px,50px) rotate(-180deg);
+    transform: translate(50px, 50px) rotate(-180deg);
   }
 
   75% {

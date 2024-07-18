@@ -28,6 +28,20 @@
     }
   }
 
+  &__small {
+    font-weight: $weight-light;
+
+    @include rwd(bpSp, below) {
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+    }
+
+    @include rwd(bpSp) {
+      font-size: 1.8rem;
+      margin-bottom: 30px;
+    }
+  }
+
   &--en {
     display: block;
     font-weight: $weight-light;
@@ -39,6 +53,74 @@
 
     @include rwd(bpSp) {
       font-size: 1.6rem;
+    }
+  }
+}
+
+.hdg-block {
+  position: relative;
+
+  @include rwd(bpSp, below) {
+    width: 100%;
+    height: 100px;
+  }
+
+  @include rwd(bpSp) {
+    width: 100%;
+    height: 200px;
+  }
+
+  &__img-wrap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: hidden;
+    width: 60%;
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      background: linear-gradient(270deg, $color-white 0%, $color-white 40%, rgb(255 255 255 / 0%) 100%);
+
+      @include rwd(bpSp, below) {
+        width: 180px;
+        height: calc(100% + 100px);
+        transform: rotate(32deg);
+        top: -50px;
+        right: -40px;
+      }
+
+      @include rwd(bpSp) {
+        width: 280px;
+        height: calc(100% + 130px);
+        transform: rotate(32deg);
+        top: -50px;
+        right: -40px;
+      }
+    }
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__text {
+    display: inline-block;
+    margin-bottom: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    @include rwd(bpSp, below) {
+      right: 10%;
+    }
+
+    @include rwd(bpSp) {
+      right: 20%;
     }
   }
 }

@@ -104,12 +104,12 @@
 }
 
 .list-bubble {
-  @include rwd(bpSp) {
-    margin-bottom: 60px;
-  }
-
   &__list {
     position: relative;
+
+    @include rwd(bpSp, below) {
+      padding-left: 20px;
+    }
 
     @include rwd(bpSp) {
       padding-left: 20px;
@@ -117,7 +117,7 @@
 
     &:nth-of-type(n+2) {
       @include rwd(bpSp) {
-        margin-top: 24px;
+        margin-top: 12px;
       }
     }
 
@@ -125,26 +125,40 @@
       position: absolute;
       top: 13px;
       left: 6px;
-      width: 12px;
-      height: 12px;
+      width: 8px;
+      height: 8px;
       content: "";
       transform: translate(-50%, -50%);
       border-radius: 1000px;
       background: $color-main;
     }
   }
+
+  @include rwd(bpSp, below) {
+    + * {
+      margin-top: 36px;
+    }
+  }
+
+  @include rwd(bpSp) {
+    + * {
+      margin-top: 60px;
+    }
+  }
 }
 
 .list-unit {
+  @include rwd(bpSp, below) {
+    margin-bottom: 36px;
+  }
+
   @include rwd(bpSp) {
     margin-bottom: 60px;
   }
 
   &__list {
     &:nth-of-type(n+2) {
-      @include rwd(bpSp) {
-        margin-top: 24px;
-      }
+      margin-top: 10px;
     }
   }
 
@@ -157,23 +171,35 @@
   }
 }
 
-.category-equipment-list {
+.list-category-equipment {
+  @include rwd(bpSp, below) {
+    margin-top: 36px;
+  }
+
+  @include rwd(bpSp) {
+    margin-top: 60px;
+  }
+
   >ul {
     display: flex;
     flex-wrap: wrap;
-    border-radius: 14px;
+    justify-content: center;
     overflow: hidden;
+    border-radius: 14px;
   }
 
   &__list {
-    height: 120px;
-
-    @include rwd(bpSp, below) {
-      width: calc(100% / 2);
-    }
+    height: 100px;
+    overflow: hidden;
 
     @include rwd(bpSp) {
-      width: calc(100% / 4);
+      &:first-of-type {
+        border-radius: 14px 0 0 14px;
+      }
+
+      &:last-of-type {
+        border-radius: 0 14px 14px 0;
+      }
     }
   }
 
@@ -196,7 +222,7 @@
     overflow: hidden;
 
     &:hover {
-      .category-equipment-list {
+      .list-category-equipment {
         &__img {
           transform: scale(1.1);
         }
@@ -211,5 +237,97 @@
     color: $color-white;
     font-weight: $weight-medium;
     transform: translate(-50%, -50%);
+  }
+}
+
+.list-desc {
+  @include rwd(bpSp, below) {
+    + * {
+      margin-top: 26px;
+    }
+  }
+
+  @include rwd(bpSp) {
+    + * {
+      margin-top: 36px;
+    }
+  }
+
+  &__block {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    @include rwd(bpSp, below) {
+      display: block;
+    }
+
+    &:nth-of-type(n+2) {
+      margin-top: 10px;
+    }
+  }
+
+  &__title {
+    flex-shrink: 0;
+    font-weight: $weight-medium;
+
+    &--weight-light {
+      font-weight: $weight-light;
+
+      @include rwd(bpSp, below) {
+        font-weight: $weight-medium;
+      }
+    }
+  }
+}
+
+.list-desc-column {
+  @include rwd(bpSp, below) {
+    margin-top: 36px;
+  }
+
+  @include rwd(bpSp) {
+    margin-top: 60px;
+  }
+
+  &__block {
+    &:nth-of-type(n+2) {
+      margin-top: 18px;
+    }
+  }
+
+  &__title {
+    font-weight: $weight-medium;
+  }
+
+  &__text {
+    margin-top: 8px;
+  }
+}
+
+.list-annotation {
+  @include rwd(bpSp, below) {
+    margin-bottom: 15px;
+  }
+
+  @include rwd(bpSp) {
+    margin-bottom: 30px;
+  }
+
+  &__list {
+    color: $color-gray;
+    font-size: 1.2rem;
+
+    &:nth-of-type(n+2) {
+      margin-top: 10px;
+    }
+  }
+
+  &__unit {
+    display: inline-block;
+
+    @include rwd(bpSp) {
+      margin-right: 8px;
+    }
   }
 }

@@ -4,19 +4,20 @@ import { offsetTop } from '../utility/OffsetTop';
  */
 export class SmoothScroll {
   o: { offset: number; HeaderHeight: number; };
-  element: HTMLAnchorElement;
+  element: HTMLAnchorElement | undefined;
   urlHash: string;
-  href: string;
-  scrollTarget: HTMLElement | null;
+  href: string | undefined;
+  scrollTarget: "" | HTMLElement | null | undefined;
+  loadHref: HTMLElement | null | undefined;
   scrollFlg: boolean;
   scrollTargetPos: number;
   scrollHandler: () => void;
 
   /**
-   * @param  {HTMLAnchorElement} element rootとなる要素
+   * @param  {HTMLAnchorElement | undefined} element rootとなる要素
    * @returns void
    */
-  constructor(element: HTMLAnchorElement, urlHash: string, options = {}) {
+  constructor(element: HTMLAnchorElement | undefined, urlHash: string, options = {}) {
     const defaultOptions = {
       offset: 0,
       HeaderHeight: 134
@@ -25,8 +26,9 @@ export class SmoothScroll {
     this.o = Object.assign(defaultOptions, options);
     this.element = element;
     this.urlHash = urlHash;
-    this.href = this.element.hash;
-    this.scrollTarget = this.href === '#top' ? document.documentElement : document.getElementById(this.href.substring(1));
+    this.href = this.element && this.element.hash;
+    this.loadHref = document.getElementById(this.urlHash.substring(1));
+    this.scrollTarget = this.href === '#top' ? document.documentElement : this.href && document.getElementById(this.href.substring(1));
     this.scrollFlg = false;
     this.scrollTargetPos = 0;
     this.scrollHandler = this.scrolling.bind(this);
@@ -40,8 +42,8 @@ export class SmoothScroll {
    * @returns void
    */
   init() {
-    this.element.addEventListener('click', this.clickHandler.bind(this));
-    if (this.urlHash === this.href) {
+    this.element && this.element.addEventListener('click', this.clickHandler.bind(this));
+    if (this.element === undefined && this.loadHref !== null) {
       window.addEventListener('load', this.loadHandler.bind(this));
     }
   }
@@ -91,8 +93,10 @@ export class SmoothScroll {
       this.o.HeaderHeight = 134;
     }
 
-    if (this.scrollTarget) {
-      this.scrollTargetPos = this.href === '#top' ? 0 : offsetTop(this.scrollTarget) - this.o.offset - this.o.HeaderHeight;
+    console.log(this.scrollTarget)
+
+    if (this.loadHref) {
+      this.scrollTargetPos = this.href === '#top' ? 0 : offsetTop(this.loadHref) - this.o.offset - this.o.HeaderHeight;
     }
 
     window.scrollTo({

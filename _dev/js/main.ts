@@ -2,7 +2,7 @@ import "./init";
 import { topMv } from './modules/topMv';
 import { accordion } from './modules/accordion';
 import { hamburger } from './modules/hamburger';
-import { categoryCarousel } from './modules/categoryCarousel';
+import { categoryListAdjustment } from './modules/categoryListAdjustment';
 import { fade } from './modules/fade';
 import { SmoothScroll } from './modules/SmoothScroll';
 import { tab } from './modules/tab';
@@ -53,24 +53,24 @@ import "scroll-behavior-polyfill";
     new hamburger(hamburgerTarget, hamburgerDisplay, hamburgerLins);
   }
 
-  const categoryImgRoots: NodeListOf<HTMLElement> | null = doc.querySelectorAll('.js-category-carousel__img');
-  const categoryLinkRoots: NodeListOf<HTMLElement> | null = doc.querySelectorAll('.js-category-carousel__links');
+  const categoryListRoots: NodeListOf<HTMLElement> | null = doc.querySelectorAll('.js-category-adjustment');
 
-  if (displayWidth <= 768) {
-    new categoryCarousel(null, categoryImgRoots, categoryLinkRoots, true);
-  } else {
-    for (const item of categoryLinkRoots) {
-      new categoryCarousel(item, categoryImgRoots, categoryLinkRoots, false);
-    }
+  for (const item of categoryListRoots) {
+    new categoryListAdjustment(item, categoryListRoots);
   }
 
   // アンカーリンク
-  const anchorLinks: NodeListOf<HTMLAnchorElement> = doc.querySelectorAll('a[href^="#anc-"], a[href="#top"]');
+  const anchorLinks: NodeListOf<HTMLAnchorElement> = doc.querySelectorAll('a[href^="#anchor-"], a[href="#top"]');
   const urlHash = doc.location.hash;
+  const anchorFlg = urlHash ? true : false;
 
-  for (const item of anchorLinks) {
-    const linkItem = item;
-    new SmoothScroll(linkItem, urlHash);
+  if (anchorFlg) {
+    new SmoothScroll(undefined, urlHash);
+  } else {
+    for (const item of anchorLinks) {
+      const linkItem = item;
+      new SmoothScroll(linkItem, urlHash);
+    }
   }
 
     // モーダル

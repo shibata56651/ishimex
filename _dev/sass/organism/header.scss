@@ -228,11 +228,25 @@
     }
 
     &--contact {
-      background: linear-gradient(90deg, #032fe8 0%, #3662ff 100%);
+      background: linear-gradient(90deg, #032fe8 0%, #3662ff 25%, #3662ff 51%, #032fe8 100%);
+      background-position: 1% 50%;
+      background-size: 200% auto;
+      transition: .5s;
+
+      &:hover {
+        background-position: 99% 50%;
+      }
     }
 
     &--recruit {
-      background: linear-gradient(90deg, #05c3e5 0%, #4ee4ff 100%);
+      background: linear-gradient(90deg, #05c3e5 0%, #4ee4ff 25%, #4ee4ff 51%, #05c3e5 100%);
+      background-position: 1% 50%;
+      background-size: 200% auto;
+      transition: .5s;
+
+      &:hover {
+        background-position: 99% 50%;
+      }
     }
   }
 

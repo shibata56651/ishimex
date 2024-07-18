@@ -1,0 +1,54 @@
+/* stylelint-disable scss/dollar-variable-pattern */
+.basic-table {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+}
+.basic-table__table {
+  width: 100%;
+}
+@media print, screen and (max-width: 768px) {
+  .basic-table__table + * {
+    margin-top: 26px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .basic-table__table + * {
+    margin-top: 36px;
+  }
+}
+.basic-table__hdg-content, .basic-table__text-content {
+  padding: 12px 6px;
+}
+.basic-table__hdg-content > * + *, .basic-table__text-content > * + * {
+  margin-top: 30px;
+}
+.basic-table__hdg-content > *:first-child, .basic-table__text-content > *:first-child {
+  margin-top: 0;
+}
+@media print, screen and (max-width: 768px) {
+  .basic-table__hdg-content {
+    width: 100px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .basic-table__hdg-content {
+    width: 140px;
+  }
+}
+.basic-table__text {
+  display: block;
+}
+@media print, screen and (max-width: 768px) {
+  .basic-table__text:nth-of-type(n+2) {
+    margin-top: 8px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .basic-table__text:nth-of-type(n+2) {
+    margin-top: 12px;
+  }
+}
+.basic-table__block:nth-of-type(even) {
+  background: #e1e7fd;
+}

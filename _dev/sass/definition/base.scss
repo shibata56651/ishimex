@@ -94,13 +94,21 @@ textarea {
   min-height: 200px;
 }
 
+address {
+  font-style: normal;
+}
+
 p {
   @include rwd(bpSp, below) {
-    margin-bottom: 26px;
+    + * {
+      margin-top: 26px;
+    }
   }
 
   @include rwd(bpSp) {
-    margin-bottom: 36px;
+    + * {
+      margin-top: 36px;
+    }
   }
 }
 
@@ -125,6 +133,12 @@ p {
 
   @include rwd(bpTab, below) {
     margin-top: 24px;
+  }
+}
+
+.str-contents-wrapper {
+  &__lower-page {
+    padding: 60px 0 0;
   }
 }
 
@@ -154,6 +168,29 @@ p {
 
     @include rwd(bpSp) {
       padding: 80px 42px 42px;
+    }
+  }
+
+  &__lower-page {
+    max-width: 1400px;
+    margin: 0 auto;
+
+    @include rwd(bpSp, below) {
+      padding: 40px 16px 24px;
+    }
+
+    @include rwd(bpSp) {
+      padding: 60px 42px 42px;
+    }
+  }
+
+  &__contents {
+    @include rwd(bpSp, below) {
+      margin-bottom: 30px;
+    }
+
+    @include rwd(bpSp) {
+      margin-bottom: 60px;
     }
   }
 }

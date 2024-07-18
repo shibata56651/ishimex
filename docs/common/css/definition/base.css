@@ -91,14 +91,18 @@ textarea {
   min-height: 200px;
 }
 
+address {
+  font-style: normal;
+}
+
 @media print, screen and (max-width: 768px) {
-  p {
-    margin-bottom: 26px;
+  p + * {
+    margin-top: 26px;
   }
 }
 @media print, screen and (min-width: 769px) {
-  p {
-    margin-bottom: 36px;
+  p + * {
+    margin-top: 36px;
   }
 }
 
@@ -128,6 +132,10 @@ textarea {
   }
 }
 
+.str-contents-wrapper__lower-page {
+  padding: 60px 0 0;
+}
+
 .section__base:nth-of-type(even) {
   background: #fff;
 }
@@ -152,5 +160,29 @@ textarea {
 @media print, screen and (min-width: 769px) {
   .section__category {
     padding: 80px 42px 42px;
+  }
+}
+.section__lower-page {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+@media print, screen and (max-width: 768px) {
+  .section__lower-page {
+    padding: 40px 16px 24px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .section__lower-page {
+    padding: 60px 42px 42px;
+  }
+}
+@media print, screen and (max-width: 768px) {
+  .section__contents {
+    margin-bottom: 30px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .section__contents {
+    margin-bottom: 60px;
   }
 }

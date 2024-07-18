@@ -229,6 +229,10 @@
   display: block;
 }
 
+[data-script-enabled=true] .js-fade-roots {
+  opacity: 0;
+}
+
 .mv__animation-01 {
   position: absolute;
   top: 0;
@@ -307,13 +311,13 @@
 }
 
 .is-fade {
-  animation: menuFadeInAnimation 0.4s ease-in-out forwards;
+  animation: fadeInAnimation 0.6s ease-in-out forwards;
 }
 
 .is-slide-left {
-  animation: menuSlideLeftInAnimation 0.4s ease-in-out forwards;
+  animation: slideLightInAnimation 0.6s ease-in-out forwards;
 }
 
 .is-slide-right {
-  animation: menuSlideRightInAnimation 0.4s ease-in-out forwards;
+  animation: slideRightInAnimation 0.6s ease-in-out forwards;
 }

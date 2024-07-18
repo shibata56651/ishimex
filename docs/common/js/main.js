@@ -12940,7 +12940,7 @@ var accordion_1 = __webpack_require__(/*! ./modules/accordion */ "./_dev/js/modu
 
 var hamburger_1 = __webpack_require__(/*! ./modules/hamburger */ "./_dev/js/modules/hamburger.ts");
 
-var categoryCarousel_1 = __webpack_require__(/*! ./modules/categoryCarousel */ "./_dev/js/modules/categoryCarousel.ts");
+var categoryListAdjustment_1 = __webpack_require__(/*! ./modules/categoryListAdjustment */ "./_dev/js/modules/categoryListAdjustment.ts");
 
 var fade_1 = __webpack_require__(/*! ./modules/fade */ "./_dev/js/modules/fade.ts");
 
@@ -13014,46 +13014,46 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
     new hamburger_1.hamburger(hamburgerTarget, hamburgerDisplay, hamburgerLins);
   }
 
-  var categoryImgRoots = doc.querySelectorAll('.js-category-carousel__img');
-  var categoryLinkRoots = doc.querySelectorAll('.js-category-carousel__links');
+  var categoryListRoots = doc.querySelectorAll('.js-category-adjustment');
 
-  if (displayWidth <= 768) {
-    new categoryCarousel_1.categoryCarousel(null, categoryImgRoots, categoryLinkRoots, true);
-  } else {
-    var _iterator2 = _createForOfIteratorHelper(categoryLinkRoots),
-        _step2;
-
-    try {
-      for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
-        var item = _step2.value;
-        new categoryCarousel_1.categoryCarousel(item, categoryImgRoots, categoryLinkRoots, false);
-      }
-    } catch (err) {
-      _iterator2.e(err);
-    } finally {
-      _iterator2.f();
-    }
-  } // アンカーリンク
-
-
-  var anchorLinks = doc.querySelectorAll('a[href^="#anc-"], a[href="#top"]');
-  var urlHash = doc.location.hash;
-
-  var _iterator3 = _createForOfIteratorHelper(anchorLinks),
-      _step3;
+  var _iterator2 = _createForOfIteratorHelper(categoryListRoots),
+      _step2;
 
   try {
-    for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
-      var _item7 = _step3.value;
-      var linkItem = _item7;
-      new SmoothScroll_1.SmoothScroll(linkItem, urlHash);
-    } // モーダル
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+      var _item7 = _step2.value;
+      new categoryListAdjustment_1.categoryListAdjustment(_item7, categoryListRoots);
+    } // アンカーリンク
 
   } catch (err) {
-    _iterator3.e(err);
+    _iterator2.e(err);
   } finally {
-    _iterator3.f();
+    _iterator2.f();
   }
+
+  var anchorLinks = doc.querySelectorAll('a[href^="#anchor-"], a[href="#top"]');
+  var urlHash = doc.location.hash;
+  var anchorFlg = urlHash ? true : false;
+
+  if (anchorFlg) {
+    new SmoothScroll_1.SmoothScroll(undefined, urlHash);
+  } else {
+    var _iterator3 = _createForOfIteratorHelper(anchorLinks),
+        _step3;
+
+    try {
+      for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+        var item = _step3.value;
+        var linkItem = item;
+        new SmoothScroll_1.SmoothScroll(linkItem, urlHash);
+      }
+    } catch (err) {
+      _iterator3.e(err);
+    } finally {
+      _iterator3.f();
+    }
+  } // モーダル
+
 
   var modalRoots = doc.querySelectorAll('.js-modal-hook');
   var modalOverlay = doc.getElementById('js-modal-overlay');
@@ -13434,7 +13434,7 @@ var OffsetTop_1 = __webpack_require__(/*! ../utility/OffsetTop */ "./_dev/js/uti
 
 var SmoothScroll = /*#__PURE__*/function () {
   /**
-   * @param  {HTMLAnchorElement} element rootとなる要素
+   * @param  {HTMLAnchorElement | undefined} element rootとなる要素
    * @returns void
    */
   function SmoothScroll(element, urlHash) {
@@ -13449,8 +13449,9 @@ var SmoothScroll = /*#__PURE__*/function () {
     this.o = Object.assign(defaultOptions, options);
     this.element = element;
     this.urlHash = urlHash;
-    this.href = this.element.hash;
-    this.scrollTarget = this.href === '#top' ? document.documentElement : document.getElementById(this.href.substring(1));
+    this.href = this.element && this.element.hash;
+    this.loadHref = document.getElementById(this.urlHash.substring(1));
+    this.scrollTarget = this.href === '#top' ? document.documentElement : this.href && document.getElementById(this.href.substring(1));
     this.scrollFlg = false;
     this.scrollTargetPos = 0;
     this.scrollHandler = this.scrolling.bind(this);
@@ -13466,9 +13467,9 @@ var SmoothScroll = /*#__PURE__*/function () {
   _createClass(SmoothScroll, [{
     key: "init",
     value: function init() {
-      this.element.addEventListener('click', this.clickHandler.bind(this));
+      this.element && this.element.addEventListener('click', this.clickHandler.bind(this));
 
-      if (this.urlHash === this.href) {
+      if (this.element === undefined && this.loadHref !== null) {
         window.addEventListener('load', this.loadHandler.bind(this));
       }
     }
@@ -13519,8 +13520,10 @@ var SmoothScroll = /*#__PURE__*/function () {
         this.o.HeaderHeight = 134;
       }
 
-      if (this.scrollTarget) {
-        this.scrollTargetPos = this.href === '#top' ? 0 : (0, OffsetTop_1.offsetTop)(this.scrollTarget) - this.o.offset - this.o.HeaderHeight;
+      console.log(this.scrollTarget);
+
+      if (this.loadHref) {
+        this.scrollTargetPos = this.href === '#top' ? 0 : (0, OffsetTop_1.offsetTop)(this.loadHref) - this.o.offset - this.o.HeaderHeight;
       }
 
       window.scrollTo({
@@ -13733,10 +13736,10 @@ exports.accordion = accordion;
 
 /***/ }),
 
-/***/ "./_dev/js/modules/categoryCarousel.ts":
-/*!*********************************************!*\
-  !*** ./_dev/js/modules/categoryCarousel.ts ***!
-  \*********************************************/
+/***/ "./_dev/js/modules/categoryListAdjustment.ts":
+/*!***************************************************!*\
+  !*** ./_dev/js/modules/categoryListAdjustment.ts ***!
+  \***************************************************/
 /***/ (function(__unused_webpack_module, exports) {
 
 "use strict";
@@ -13751,27 +13754,25 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 Object.defineProperty(exports, "__esModule", ({
   value: true
 }));
-exports.categoryCarousel = void 0;
+exports.categoryListAdjustment = void 0;
 
-var categoryCarousel = /*#__PURE__*/function () {
+var categoryListAdjustment = /*#__PURE__*/function () {
   /**
    * @param  {Element} elements rootとなる要素
    * @returns void
    */
-  function categoryCarousel(item, categoryImgRoots, categoryLinkRoots, spSizeBoolean) {
-    _classCallCheck(this, categoryCarousel);
+  function categoryListAdjustment(item, categoryListRoots) {
+    _classCallCheck(this, categoryListAdjustment);
+
+    var _a;
 
     var defaultOptions = {
       activeClass: 'is-active'
     };
     this.o = Object.assign(defaultOptions);
     this.item = item;
-    this.categoryImgRoots = categoryImgRoots;
-    this.categoryLinkRoots = categoryLinkRoots;
-    this.spSizeBoolean = spSizeBoolean;
-    this.displayWidth = window.innerWidth;
-    this.currentIndex = 0;
-    this.previousIndex = undefined;
+    this.categoryListRoots = categoryListRoots;
+    this.categoryListItems = (_a = this.item) === null || _a === void 0 ? void 0 : _a.querySelectorAll('.js-category-adjustment__target');
     this.init();
   }
   /**
@@ -13781,57 +13782,11 @@ var categoryCarousel = /*#__PURE__*/function () {
    */
 
 
-  _createClass(categoryCarousel, [{
+  _createClass(categoryListAdjustment, [{
     key: "init",
     value: function init() {
-      var _a, _b;
-
-      if (this.spSizeBoolean) {
-        // console.log(this.categoryImgRoots)
-        setInterval(this.changeImage.bind(this), 4000);
-      } else {
-        (_a = this.item) === null || _a === void 0 ? void 0 : _a.addEventListener('mouseover', this.activeEvent.bind(this));
-        (_b = this.item) === null || _b === void 0 ? void 0 : _b.addEventListener('focus', this.activeEvent.bind(this));
-      }
-    }
-  }, {
-    key: "FadeAnimation",
-    value: function FadeAnimation(target, kind) {
-      target.style.opacity = '0';
-      var fadeAnimation = kind === 'open' ? target.animate({
-        opacity: ['0', '1']
-      }, {
-        duration: 1000,
-        easing: 'ease'
-      }) : target.animate({
-        opacity: ['1', '0']
-      }, {
-        duration: 1000,
-        easing: 'ease'
-      });
-
-      fadeAnimation.onfinish = function () {
-        kind === 'open' ? target.style.opacity = '1' : target.style.opacity = '0'; // kind === 'open' ? target.classList.add(this.o.activeClass) : target.classList.remove(this.o.activeClass);
-      };
-    }
-  }, {
-    key: "changeImage",
-    value: function changeImage() {
-      // if (this.currentIndex === 0) {
-      //   this.categoryImgRoots && this.categoryImgRoots[0].classList.add('is-active');
-      //   this.currentIndex++;
-      // } else {
-      // 現在の画像からis-activeクラスを削除
-      this.categoryImgRoots && this.categoryImgRoots[this.currentIndex].classList.remove(this.o.activeClass);
-      this.categoryImgRoots && this.FadeAnimation(this.categoryImgRoots[this.currentIndex], 'close');
-
-      if (this.categoryImgRoots && this.categoryImgRoots.length - 1 === this.currentIndex) {
-        this.currentIndex = -1;
-      }
-
-      this.currentIndex++;
-      this.categoryImgRoots && this.categoryImgRoots[this.currentIndex].classList.add(this.o.activeClass);
-      this.categoryImgRoots && this.FadeAnimation(this.categoryImgRoots[this.currentIndex], 'open'); // }
+      window.addEventListener('load', this.loadEvent.bind(this));
+      window.addEventListener('resize', this.loadEvent.bind(this));
     }
     /**
      * ページロード時に情報を取得
@@ -13840,44 +13795,42 @@ var categoryCarousel = /*#__PURE__*/function () {
      */
 
   }, {
-    key: "activeEvent",
-    value: function activeEvent() {
+    key: "loadEvent",
+    value: function loadEvent() {
       var _this = this;
 
-      // this.categoryImgRoots?.forEach((item) => {
-      // setTimeout(() => {
-      //     item.classList.add(this.o.activeClass);
-      //   }, 4000);
-      // })
-      var _a, _b, _c, _d; // 画像のアクティブクラス初期化
+      var _a, _b, _c;
 
+      var width = window.innerWidth;
 
-      (_a = this.categoryImgRoots) === null || _a === void 0 ? void 0 : _a.forEach(function (item) {
-        item.classList.remove(_this.o.activeClass);
-      }); // リンクのアクティブクラス初期化
-
-      (_b = this.categoryLinkRoots) === null || _b === void 0 ? void 0 : _b.forEach(function (item) {
-        item.classList.remove(_this.o.activeClass);
-      }); // 表示画像処理
-
-      var linkTarget = (_c = this.item) === null || _c === void 0 ? void 0 : _c.dataset.categoryLink;
-      (_d = this.categoryImgRoots) === null || _d === void 0 ? void 0 : _d.forEach(function (item) {
-        var imgTarget = item.dataset.categoryImg;
-
-        if (linkTarget === imgTarget) {
-          item.classList.add(_this.o.activeClass);
-          _this.previousIndex = imgTarget;
-
-          _this.FadeAnimation(item, 'open');
+      if (width <= 768) {
+        if (this.categoryListItems && this.categoryListItems.length % 2 !== 0) {
+          (_a = this.categoryListItems) === null || _a === void 0 ? void 0 : _a.forEach(function (item, index) {
+            if (_this.categoryListItems && index === _this.categoryListItems.length - 1) {
+              item.style.width = '100%';
+            } else {
+              item.style.width = '50%';
+            }
+          });
+        } else {
+          (_b = this.categoryListItems) === null || _b === void 0 ? void 0 : _b.forEach(function (item) {
+            item.style.width = '50%';
+          });
         }
-      }); // this.display && this.FadeAnimation(this.display);
+      } else {
+        (_c = this.categoryListItems) === null || _c === void 0 ? void 0 : _c.forEach(function (item) {
+          var _a;
+
+          item.style.width = "calc(100% / ".concat((_a = _this.categoryListItems) === null || _a === void 0 ? void 0 : _a.length, ")");
+        });
+      }
     }
   }]);
 
-  return categoryCarousel;
+  return categoryListAdjustment;
 }();
 
-exports.categoryCarousel = categoryCarousel;
+exports.categoryListAdjustment = categoryListAdjustment;
 
 /***/ }),
 
@@ -14926,12 +14879,6 @@ exports.topMv = topMv;
 "use strict";
 
 
-function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof Symbol !== "undefined" && o[Symbol.iterator] || o["@@iterator"]; if (!it) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -15003,57 +14950,44 @@ var xmlGetData = /*#__PURE__*/function () {
         _this.items = sitemap.querySelectorAll('item');
         _this.ul_element = document.createElement('ul');
 
-        var _iterator = _createForOfIteratorHelper(_this.items),
-            _step;
+        _this.items.forEach(function (data, index) {
+          var _a;
 
-        try {
-          for (_iterator.s(); !(_step = _iterator.n()).done;) {
-            var _data = _step.value;
+          var id = data.querySelector('id');
+          var maxLength = _this.elements.dataset.displayLength;
 
-            var id = _data.querySelector('id');
+          if (maxLength ? displayCount < Number(maxLength) && _this.count === Number(id === null || id === void 0 ? void 0 : id.innerHTML) : _this.count === Number(id === null || id === void 0 ? void 0 : id.innerHTML)) {
+            var listingDate = data.querySelector('listingDate');
+            var limitDate = data.querySelector('limitDate');
+            var anchor = data.querySelector('anchor');
 
-            if (displayCount <= 4 && _this.count === Number(id === null || id === void 0 ? void 0 : id.innerHTML)) {
-              var listingDate = _data.querySelector('listingDate');
-
-              var limitDate = _data.querySelector('limitDate');
-
-              var anchor = _data.querySelector('anchor');
-
-              if (listingDate ? limitDate ? limitDate.innerHTML.split('/').join('') > nowYear + nowMonth + nowDay && listingDate.innerHTML.split('/').join('') <= nowYear + nowMonth + nowDay : listingDate.innerHTML.split('/').join('') <= nowYear + nowMonth + nowDay : false) {
-                displayCount++;
-
-                var text = _data.querySelector('text');
-
-                var liElement = document.createElement('li');
-                var anchorParentElement = document.createElement('a');
-                var divChildDateElement = document.createElement('div');
-                var divChildContentsElement = document.createElement('div');
-                var spanDateElement = document.createElement('span');
-                var spanContentsElement = document.createElement('span');
-                anchorParentElement.setAttribute('href', "".concat(anchor === null || anchor === void 0 ? void 0 : anchor.innerHTML));
-                liElement.appendChild(anchorParentElement);
-                anchorParentElement.appendChild(divChildDateElement);
-                anchorParentElement.appendChild(divChildContentsElement);
-                divChildDateElement.appendChild(spanDateElement);
-                divChildContentsElement.appendChild(spanContentsElement);
-                liElement.classList.add('news-contents-list__list');
-                anchorParentElement.classList.add('news-contents-list__anchor');
-                divChildDateElement.classList.add('news-contents-list__date');
-                divChildContentsElement.classList.add('news-contents-list__content');
-                spanDateElement.classList.add('news-contents-list__date-text');
-                spanContentsElement.classList.add('news-contents-list__content-text');
-                spanDateElement.innerHTML = "".concat(listingDate === null || listingDate === void 0 ? void 0 : listingDate.textContent);
-                spanContentsElement.innerHTML = "".concat(text === null || text === void 0 ? void 0 : text.textContent);
-
-                _this.ul_element.appendChild(liElement);
-              }
+            if (listingDate ? limitDate ? limitDate.innerHTML.split('/').join('') > nowYear + nowMonth + nowDay && listingDate.innerHTML.split('/').join('') <= nowYear + nowMonth + nowDay : listingDate.innerHTML.split('/').join('') <= nowYear + nowMonth + nowDay : false) {
+              displayCount++;
+              var text = data.querySelector('text');
+              var liElement = document.createElement('li');
+              var anchorParentElement = document.createElement('a');
+              var divChildDateElement = document.createElement('div');
+              var divChildContentsElement = document.createElement('div');
+              var spanDateElement = document.createElement('span');
+              var spanContentsElement = document.createElement('span');
+              anchorParentElement.setAttribute('href', "".concat(anchor === null || anchor === void 0 ? void 0 : anchor.innerHTML));
+              liElement.appendChild(anchorParentElement);
+              anchorParentElement.appendChild(divChildDateElement);
+              anchorParentElement.appendChild(divChildContentsElement);
+              divChildDateElement.appendChild(spanDateElement);
+              divChildContentsElement.appendChild(spanContentsElement);
+              liElement.classList.add('news-contents-list__list');
+              anchorParentElement.classList.add('news-contents-list__anchor');
+              divChildDateElement.classList.add('news-contents-list__date');
+              divChildContentsElement.classList.add('news-contents-list__content');
+              spanDateElement.classList.add('news-contents-list__date-text');
+              spanContentsElement.classList.add('news-contents-list__content-text');
+              spanDateElement.innerHTML = "".concat(listingDate === null || listingDate === void 0 ? void 0 : listingDate.textContent);
+              spanContentsElement.innerHTML = "".concat(text === null || text === void 0 ? void 0 : text.textContent);
+              (_a = _this.ul_element) === null || _a === void 0 ? void 0 : _a.appendChild(liElement);
             }
           }
-        } catch (err) {
-          _iterator.e(err);
-        } finally {
-          _iterator.f();
-        }
+        });
 
         _this.elements.appendChild(_this.ul_element);
       });

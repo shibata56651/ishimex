@@ -1,0 +1,69 @@
+@use "../definition/mixin" as *;
+@use "../definition/var" as *;
+
+.basic-table {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 1200px;
+
+  &__table {
+    width: 100%;
+
+    @include rwd(bpSp, below) {
+      + * {
+        margin-top: 26px;
+      }
+    }
+
+    @include rwd(bpSp) {
+      + * {
+        margin-top: 36px;
+      }
+    }
+  }
+
+  &__hdg-content,
+  &__text-content {
+    padding: 12px 6px;
+
+    > * + * {
+      margin-top: 30px;
+    }
+
+    > * {
+      &:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+
+  &__hdg-content {
+    @include rwd(bpSp, below) {
+      width: 100px;
+    }
+
+    @include rwd(bpSp) {
+      width: 140px;
+    }
+  }
+
+  &__text {
+    display: block;
+
+    &:nth-of-type(n+2) {
+      @include rwd(bpSp, below) {
+        margin-top: 8px;
+      }
+
+      @include rwd(bpSp) {
+        margin-top: 12px;
+      }
+    }
+  }
+
+  &__block {
+    &:nth-of-type(even) {
+      background: $color-sub-04;
+    }
+  }
+}

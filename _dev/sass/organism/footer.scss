@@ -7,6 +7,7 @@
 
   @include rwd(bpSp, below) {
     border-top: solid 3px $color-main;
+    padding: 12px 0;
   }
 
   @include rwd(bpSp) {

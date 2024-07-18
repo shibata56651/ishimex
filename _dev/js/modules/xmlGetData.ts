@@ -58,16 +58,18 @@ export class xmlGetData {
       this.items = sitemap.querySelectorAll('item');
       this.ul_element = document.createElement('ul');
 
-        for(let data of this.items) {
+        this.items.forEach((data, index) => {
           const id = data.querySelector('id');
+          const maxLength = this.elements.dataset.displayLength;
 
-          if (displayCount <= 4 && this.count === Number(id?.innerHTML)) {
+          if (maxLength ? (displayCount < Number(maxLength) && this.count === Number(id?.innerHTML)) : (this.count === Number(id?.innerHTML))) {
             const listingDate = data.querySelector('listingDate');
             const limitDate = data.querySelector('limitDate');
             const anchor = data.querySelector('anchor');
 
             if (listingDate ? (limitDate ? (limitDate.innerHTML.split('/').join('') > nowYear+nowMonth+nowDay && listingDate.innerHTML.split('/').join('') <= nowYear+nowMonth+nowDay) : (listingDate.innerHTML.split('/').join('') <= nowYear+nowMonth+nowDay)) : false) {
               displayCount++;
+
               const text = data.querySelector('text');
 
               const liElement = document.createElement('li');
@@ -92,10 +94,10 @@ export class xmlGetData {
               spanContentsElement.classList.add('news-contents-list__content-text');
               spanDateElement.innerHTML = `${listingDate?.textContent}`;
               spanContentsElement.innerHTML = `${text?.textContent}`;
-              this.ul_element.appendChild(liElement);
+              this.ul_element?.appendChild(liElement);
             }
           }
-      }
+        });
 
       this.elements.appendChild(this.ul_element);
     });

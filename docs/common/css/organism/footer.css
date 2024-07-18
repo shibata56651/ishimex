@@ -6,6 +6,7 @@
 @media print, screen and (max-width: 768px) {
   .footer {
     border-top: solid 3px #0433e3;
+    padding: 12px 0;
   }
 }
 @media print, screen and (min-width: 769px) {

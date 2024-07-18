@@ -33,3 +33,15 @@
     margin-left: 12px;
   }
 }
+
+.lead-text {
+  display: block;
+
+  > em {
+    font-weight: $weight-medium;
+  }
+
+  + * {
+    margin-top: 18px;
+  }
+}

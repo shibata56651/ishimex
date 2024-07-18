@@ -3,6 +3,7 @@
 @forward "toggle";
 @forward "carousel";
 @forward "tab";
+@forward "fade";
 @forward "mvAnimation";
 @forward "youtubeAPI";
 
@@ -16,13 +17,13 @@
 }
 
 .is-fade {
-  animation: menuFadeInAnimation .4s ease-in-out forwards;
+  animation: fadeInAnimation .6s ease-in-out forwards;
 }
 
 .is-slide-left {
-  animation: menuSlideLeftInAnimation .4s ease-in-out forwards;
+  animation: slideLightInAnimation .6s ease-in-out forwards;
 }
 
 .is-slide-right {
-  animation: menuSlideRightInAnimation .4s ease-in-out forwards;
+  animation: slideRightInAnimation .6s ease-in-out forwards;
 }
