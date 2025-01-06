@@ -172,6 +172,106 @@
   }
 }
 
+.lyt-column-recruit {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.lyt-column-recruit + .lyt-column-recruit::before {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  content: "";
+  background: #979797;
+  left: 0;
+}
+@media print, screen and (max-width: 768px) {
+  .lyt-column-recruit + .lyt-column-recruit::before {
+    top: -13px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .lyt-column-recruit + .lyt-column-recruit::before {
+    top: -30px;
+  }
+}
+@media print, screen and (max-width: 768px) {
+  .lyt-column-recruit--reverse {
+    flex-direction: column-reverse;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .lyt-column-recruit--reverse {
+    flex-direction: row-reverse;
+  }
+}
+@media print, screen and (max-width: 768px) {
+  .lyt-column-recruit {
+    flex-direction: column-reverse;
+    margin-top: 36px;
+  }
+  .lyt-column-recruit + * {
+    margin-top: 36px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .lyt-column-recruit {
+    max-width: 1400px;
+    width: 100%;
+    gap: 38px;
+  }
+  .lyt-column-recruit + * {
+    margin-top: 60px;
+  }
+}
+.lyt-column-recruit__title {
+  font-weight: 500;
+}
+.lyt-column-recruit__hdg + * {
+  margin-top: 10px;
+}
+@media print, screen and (max-width: 768px) {
+  .lyt-column-recruit__hdg {
+    font-size: 1.4rem;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .lyt-column-recruit__hdg {
+    font-size: 1.8rem;
+  }
+}
+.lyt-column-recruit__data {
+  display: block;
+  font-size: 1.4rem;
+}
+@media print, screen and (max-width: 768px) {
+  .lyt-column-recruit__group:first-of-type {
+    margin-top: 24px;
+  }
+}
+@media print, screen and (max-width: 768px) {
+  .lyt-column-recruit__group .lyt-img {
+    margin: 0 auto;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .lyt-column-recruit__group .lyt-img {
+    width: clamp(316px, -1.82rem + 44.94vw, 600px);
+    aspect-ratio: 16/9;
+  }
+}
+.lyt-column-recruit__date {
+  display: block;
+  font-size: 1.3rem;
+}
+.lyt-column-recruit__assign {
+  display: block;
+  font-size: 1.4rem;
+}
+.lyt-column-recruit__text {
+  margin-top: 18px;
+}
+
 .lyt-map-detail {
   display: flex;
   justify-content: center;
@@ -235,7 +335,4 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-}
-.lyt-map__target {
-  width: 100%;
 }

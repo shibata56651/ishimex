@@ -37,3 +37,149 @@
     }
   }
 }
+
+.product-tab {
+  > dl {
+    > dd {
+      width: 100%;
+
+      @include rwd(bpSp) {
+        margin-top: 18px;
+      }
+
+      @include rwd(bpSp, below) {
+        margin-top: 12px;
+      }
+    }
+  }
+}
+
+.tab-product-list {
+  @include rwd(bpSp, below) {
+    display: flex;
+    justify-content: center;
+  }
+
+  &__wrap {
+    display: flex;
+    justify-content: center;
+
+    @include rwd(bpSp) {
+      gap: 14px;
+    }
+
+    @include rwd(bpSp, below) {
+      max-width: 226px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  }
+
+  &__img-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1000px;
+    background: $color-sub-03;
+    transition: .5s;
+
+    @include rwd(bpSp) {
+      width: 80px;
+      height: 80px;
+    }
+
+    @include rwd(bpSp, below) {
+      width: 50px;
+      height: 50px;
+    }
+  }
+
+  &__text {
+    @include rwd(bpSp) {
+      margin-top: 12px;
+    }
+
+    @include rwd(bpSp, below) {
+      margin-top: 10px;
+    }
+  }
+
+  &__button {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    transition: .5s;
+
+    &:hover {
+      .tab-product-list {
+        &__img-wrap {
+          transform: scale(1.2);
+        }
+
+        &__text {
+          color: $color-main;
+        }
+      }
+    }
+  }
+
+  &__list {
+    text-align: center;
+    width: 108px;
+
+    &.is-active {
+      .tab-product-list {
+        &__img-wrap {
+          transform: scale(1.2);
+        }
+
+        &__text {
+          color: $color-main;
+        }
+      }
+    }
+  }
+
+  &__img {
+    object-fit: contain;
+    transition: .5s;
+
+    @include rwd(bpSp) {
+      width: 40px;
+      height: 40px;
+    }
+
+    @include rwd(bpSp, below) {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.tab-product-contents {
+  &__list {
+    &:nth-of-type(n+2) {
+      @include rwd(bpSp, below) {
+        .tab-product-contents {
+          &__anchor {
+            padding-top: 10px;
+          }
+        }
+      }
+
+      @include rwd(bpSp) {
+        .tab-product-contents {
+          &__anchor {
+            padding-top: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  &__content-text {
+    font-weight: $weight-medium;
+  }
+}

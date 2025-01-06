@@ -1,6 +1,12 @@
 @use "../definition/mixin" as *;
 @use "../definition/var" as *;
 
+.str-contents-wrapper {
+  &--top {
+    padding-top: 56px;
+  }
+}
+
 // 各セクション
 .section {
   &__lead {
@@ -51,6 +57,10 @@
 
   &__pagination {
     bottom: 16px !important;
+
+    @include rwd(bpSp, below) {
+      width: 94vw;
+    }
 
     &__page {
       background: $color-sub !important;

@@ -41,6 +41,16 @@
 .lead-text > em {
   font-weight: 500;
 }
+@media print, screen and (max-width: 768px) {
+  .lead-text > em {
+    font-size: 1.8rem;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .lead-text > em {
+    font-size: 2.4rem;
+  }
+}
 .lead-text + * {
   margin-top: 18px;
 }

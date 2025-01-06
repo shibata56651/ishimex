@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <data>
 	<!--
+		TOPページは上から3つまで表示
+
 		<id>1</id> プレリリース
 		<id>2</id> 企業情報
 		<id>3</id> イベント情報

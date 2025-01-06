@@ -27,7 +27,11 @@ export class accordion {
    * @returns void
    */
   init() {
-    this.element?.addEventListener('click', this.clickFunc.bind(this));
+    const width = window.innerWidth;
+
+    if (width <= 768) {
+      this.element?.addEventListener('click', this.clickFunc.bind(this));
+    }
   }
 
   fadeAnimation(target: HTMLElement, kind: 'open' | 'close') {

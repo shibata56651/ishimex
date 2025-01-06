@@ -1,4 +1,8 @@
 /* stylelint-disable scss/dollar-variable-pattern */
+.str-contents-wrapper--top {
+  padding-top: 56px;
+}
+
 .section__lead {
   position: relative;
   width: 100%;
@@ -46,6 +50,11 @@
 }
 .splide__pagination {
   bottom: 16px !important;
+}
+@media print, screen and (max-width: 768px) {
+  .splide__pagination {
+    width: 94vw;
+  }
 }
 .splide__pagination__page {
   background: #6883e8 !important;

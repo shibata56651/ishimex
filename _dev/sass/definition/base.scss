@@ -137,6 +137,8 @@ p {
 }
 
 .str-contents-wrapper {
+  border-bottom: solid 1px $color-gray;
+
   &__lower-page {
     padding: 60px 0 0;
   }
@@ -150,6 +152,22 @@ p {
 
     &:nth-of-type(odd) {
       background: $color-bg;
+    }
+
+    @include rwd(bpSp, below) {
+      padding: 16px 16px 24px;
+    }
+
+    @include rwd(bpSp) {
+      padding: 42px;
+    }
+  }
+
+  &__effort {
+    background: rgba($color: $color-bg, $alpha: 65%);
+
+    &-wrap {
+      background: url("/images/top/top-effort-01.jpg") center / cover no-repeat;
     }
 
     @include rwd(bpSp, below) {
@@ -192,5 +210,30 @@ p {
     @include rwd(bpSp) {
       margin-bottom: 60px;
     }
+  }
+
+  &__recruit {
+    width: calc(100vw - 40px);
+    margin: 0 auto 40px;
+    border-radius: 20px;
+    background: rgba($color: $color-bg, $alpha: 95%);
+
+    @include rwd(bpSp, below) {
+      padding: 60px 16px 24px;
+    }
+
+    @include rwd(bpSp) {
+      padding: 40px 42px 42px;
+    }
+  }
+
+  &__recruit-video {
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: hidden;
   }
 }

@@ -132,6 +132,9 @@ address {
   }
 }
 
+.str-contents-wrapper {
+  border-bottom: solid 1px #666;
+}
 .str-contents-wrapper__lower-page {
   padding: 60px 0 0;
 }
@@ -149,6 +152,22 @@ address {
 }
 @media print, screen and (min-width: 769px) {
   .section__base {
+    padding: 42px;
+  }
+}
+.section__effort {
+  background: rgba(241, 241, 241, 0.65);
+}
+.section__effort-wrap {
+  background: url("/images/top/top-effort-01.jpg") center/cover no-repeat;
+}
+@media print, screen and (max-width: 768px) {
+  .section__effort {
+    padding: 16px 16px 24px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .section__effort {
     padding: 42px;
   }
 }
@@ -185,4 +204,29 @@ address {
   .section__contents {
     margin-bottom: 60px;
   }
+}
+.section__recruit {
+  width: calc(100vw - 40px);
+  margin: 0 auto 40px;
+  border-radius: 20px;
+  background: rgba(241, 241, 241, 0.95);
+}
+@media print, screen and (max-width: 768px) {
+  .section__recruit {
+    padding: 60px 16px 24px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .section__recruit {
+    padding: 40px 42px 42px;
+  }
+}
+.section__recruit-video {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  overflow: hidden;
 }

@@ -12981,7 +12981,7 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
       type: 'loop',
       autoplay: true,
       pauseOnHover: false,
-      interval: 10000
+      interval: 7000
     }).mount();
   }
 
@@ -12993,12 +12993,12 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
   try {
     for (_iterator.s(); !(_step = _iterator.n()).done;) {
       var root = _step.value;
-      var category = 'footer';
+      var _category = 'footer';
 
       var _item6 = root.querySelector('.js-accordion-target');
 
       var display = root.querySelector('.js-accordion-display');
-      new accordion_1.accordion(_item6, display, footerTarget, category);
+      new accordion_1.accordion(_item6, display, footerTarget, _category);
     }
   } catch (err) {
     _iterator.e(err);
@@ -13206,7 +13206,7 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
     try {
       for (_iterator5.s(); !(_step5 = _iterator5.n()).done;) {
         var _item = _step5.value;
-        new tab_1.tab(_item, tabRoots, displayTarget);
+        new tab_1.tab(_item, tabRoots, urlHash, displayTarget);
       }
     } catch (err) {
       _iterator5.e(err);
@@ -13386,7 +13386,14 @@ __webpack_require__(/*! scroll-behavior-polyfill */ "./node_modules/scroll-behav
     try {
       for (_iterator9.s(); !(_step9 = _iterator9.n()).done;) {
         var _item5 = _step9.value;
-        num += 1;
+        var category = _item5.dataset.displayCategory;
+
+        if (category === 'all' && xmlRoots.length === 1) {
+          num = 99;
+        } else {
+          num += 1;
+        }
+
         new xmlGetData_1.xmlGetData(_item5, num);
       }
     } catch (err) {
@@ -13444,7 +13451,7 @@ var SmoothScroll = /*#__PURE__*/function () {
 
     var defaultOptions = {
       offset: 0,
-      HeaderHeight: 134
+      HeaderHeight: 53
     };
     this.o = Object.assign(defaultOptions, options);
     this.element = element;
@@ -13515,9 +13522,9 @@ var SmoothScroll = /*#__PURE__*/function () {
     key: "loadHandler",
     value: function loadHandler() {
       if (document.body.clientWidth <= 1170) {
-        this.o.HeaderHeight = 87;
+        this.o.HeaderHeight = 20;
       } else {
-        this.o.HeaderHeight = 134;
+        this.o.HeaderHeight = 53;
       }
 
       console.log(this.scrollTarget);
@@ -13655,7 +13662,11 @@ var accordion = /*#__PURE__*/function () {
     value: function init() {
       var _a;
 
-      (_a = this.element) === null || _a === void 0 ? void 0 : _a.addEventListener('click', this.clickFunc.bind(this));
+      var width = window.innerWidth;
+
+      if (width <= 768) {
+        (_a = this.element) === null || _a === void 0 ? void 0 : _a.addEventListener('click', this.clickFunc.bind(this));
+      }
     }
   }, {
     key: "fadeAnimation",
@@ -14567,7 +14578,7 @@ exports.mvAnimation = mvAnimation;
 /*!********************************!*\
   !*** ./_dev/js/modules/tab.ts ***!
   \********************************/
-/***/ (function(__unused_webpack_module, exports) {
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
 
@@ -14589,23 +14600,34 @@ Object.defineProperty(exports, "__esModule", ({
 }));
 exports.tab = void 0;
 
+var OffsetTop_1 = __webpack_require__(/*! ../utility/OffsetTop */ "./_dev/js/utility/OffsetTop.ts");
+
 var tab = /*#__PURE__*/function () {
   /**
    * @param  {HTMLButtonElement} element rootとなる要素
    * @returns void
    */
-  function tab(element, roots, displayTarget) {
+  function tab(element, roots, urlHash, displayTarget) {
     _classCallCheck(this, tab);
 
     var defaultOptions = {
-      activeClass: 'is-active'
+      activeClass: 'is-active',
+      offset: 0,
+      HeaderHeight: 53
     };
     this.o = Object.assign(defaultOptions);
     this.element = element;
     this.roots = roots;
+    this.urlHash = urlHash;
+    this.loadHref = document.getElementById(this.urlHash.substring(1));
+    this.scrollTarget = this.href && document.getElementById(this.href.substring(1));
     this.displayItem = displayTarget;
+    this.scrollTargetPos = 0;
     this.contentTarget = this.element.getAttribute('aria-controls');
     this.content = this.contentTarget ? document.getElementById(this.contentTarget) : null;
+    this.scrollFlg = false;
+    this.scrollTargetPos = 0;
+    this.scrollHandler = this.scrolling.bind(this);
     this.init();
   }
   /**
@@ -14619,7 +14641,19 @@ var tab = /*#__PURE__*/function () {
     key: "init",
     value: function init() {
       // モーダル発火
+      window.addEventListener('load', this.loadHandler.bind(this));
       this.element.addEventListener('click', this.clickHandler.bind(this));
+    }
+    /**
+     * スクロール中はthis.scrollFlgをtrueにする処理
+     *
+     * @returns void
+     */
+
+  }, {
+    key: "scrolling",
+    value: function scrolling() {
+      this.scrollFlg = true;
     }
     /**
      * @returns 発火ボタンのイベント
@@ -14662,6 +14696,124 @@ var tab = /*#__PURE__*/function () {
 
       (_b = this.element.parentElement) === null || _b === void 0 ? void 0 : _b.classList.add(this.o.activeClass);
       (_c = this.content) === null || _c === void 0 ? void 0 : _c.classList.add(this.o.activeClass);
+    }
+    /**
+    * ページロード時の処理
+    *
+    * @returns void
+    */
+
+  }, {
+    key: "loadHandler",
+    value: function loadHandler() {
+      var _a, _b, _c;
+
+      if (document.body.clientWidth <= 1170) {
+        this.o.HeaderHeight = 20;
+      } else {
+        this.o.HeaderHeight = 53;
+      }
+
+      var _iterator3 = _createForOfIteratorHelper(this.roots),
+          _step3;
+
+      try {
+        for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+          var _item2 = _step3.value;
+          (_a = _item2.parentElement) === null || _a === void 0 ? void 0 : _a.classList.remove(this.o.activeClass);
+
+          if (((_b = _item2.parentElement) === null || _b === void 0 ? void 0 : _b.id) === this.urlHash.substring(1)) {
+            (_c = _item2.parentElement) === null || _c === void 0 ? void 0 : _c.classList.add(this.o.activeClass);
+          }
+        }
+      } catch (err) {
+        _iterator3.e(err);
+      } finally {
+        _iterator3.f();
+      }
+
+      if (this.displayItem) {
+        var _iterator4 = _createForOfIteratorHelper(this.displayItem),
+            _step4;
+
+        try {
+          for (_iterator4.s(); !(_step4 = _iterator4.n()).done;) {
+            var item = _step4.value;
+            item.classList.remove(this.o.activeClass);
+
+            if (item.getAttribute("aria-labelledby") === this.urlHash.substring(1)) {
+              item.classList.add(this.o.activeClass);
+            }
+          }
+        } catch (err) {
+          _iterator4.e(err);
+        } finally {
+          _iterator4.f();
+        }
+      }
+
+      if (this.loadHref) {
+        this.scrollTargetPos = (0, OffsetTop_1.offsetTop)(this.loadHref) - this.o.offset - this.o.HeaderHeight;
+      }
+
+      window.scrollTo({
+        top: this.scrollTargetPos,
+        behavior: 'smooth'
+      });
+      this.scrollFlg = false;
+      window.addEventListener('scroll', this.scrollHandler);
+      this.setWatchScrollFlg();
+    }
+    /**
+     * スクロール中のthis.scrollFlgを監視する処理
+     *
+     * @returns void
+     */
+
+  }, {
+    key: "setWatchScrollFlg",
+    value: function setWatchScrollFlg() {
+      var _this = this;
+
+      var watchScrollFlg = setInterval(function () {
+        if (!_this.scrollFlg) {
+          clearInterval(watchScrollFlg);
+          window.removeEventListener('scroll', _this.scrollHandler);
+
+          _this.setFocusTarget();
+
+          return;
+        }
+
+        _this.scrollFlg = false;
+      }, 100);
+    }
+    /**
+     * 対象要素までスクロールが到達した時の処理
+     *
+     * @returns void
+     */
+
+  }, {
+    key: "setFocusTarget",
+    value: function setFocusTarget() {
+      if (!this.scrollTarget) {
+        return;
+      }
+
+      var hasTabindex = this.scrollTarget.hasAttribute('tabindex');
+      this.scrollTargetPos = (0, OffsetTop_1.offsetTop)(this.scrollTarget) - this.o.offset;
+
+      if (!hasTabindex) {
+        this.scrollTarget.setAttribute('tabindex', '-1');
+      }
+
+      this.scrollTarget.focus();
+      this.scrollTarget.blur();
+
+      if (!hasTabindex) {
+        this.scrollTarget.removeAttribute('tabindex');
+      }
     }
   }]);
 
@@ -14956,7 +15108,7 @@ var xmlGetData = /*#__PURE__*/function () {
           var id = data.querySelector('id');
           var maxLength = _this.elements.dataset.displayLength;
 
-          if (maxLength ? displayCount < Number(maxLength) && _this.count === Number(id === null || id === void 0 ? void 0 : id.innerHTML) : _this.count === Number(id === null || id === void 0 ? void 0 : id.innerHTML)) {
+          if (maxLength ? _this.count === 99 ? displayCount < 3 : displayCount < Number(maxLength) && _this.count === Number(id === null || id === void 0 ? void 0 : id.innerHTML) : _this.count === Number(id === null || id === void 0 ? void 0 : id.innerHTML)) {
             var listingDate = data.querySelector('listingDate');
             var limitDate = data.querySelector('limitDate');
             var anchor = data.querySelector('anchor');

@@ -1,0 +1,151 @@
+@use "../definition/mixin" as *;
+@use "../definition/var" as *;
+
+.recruit {
+  &__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: auto;
+    height: 100vh;
+  }
+}
+
+.basic-tab {
+  > dl {
+    @include rwd(bpSp) {
+      display: flex;
+      gap: 80px;
+    }
+
+    > dt {
+      flex-shrink: 0;
+    }
+
+    > dd {
+      width: 100%;
+    }
+  }
+}
+
+.tab-category-list {
+  @include rwd(bpSp, below) {
+    margin-bottom: 20px;
+  }
+
+  &__wrap {
+    @include rwd(bpSp, below) {
+      display: flex;
+    }
+  }
+
+  &__button {
+    position: relative;
+    transition: .5s;
+
+    @include rwd(bpSp, below) {
+      width: 100%;
+    }
+
+    @include rwd(bpSp) {
+      padding-left: 16px;
+    }
+
+    &:hover {
+      color: $color-main;
+    }
+  }
+
+  &__list {
+    @include rwd(bpSp, below) {
+      width: calc(100% / 3);
+      text-align: center;
+    }
+
+    &:nth-of-type(n+2) {
+      @include rwd(bpSp, below) {
+        border-left: solid 1px $color-black;
+      }
+
+      @include rwd(bpSp) {
+        margin-top: 12px;
+      }
+    }
+
+    &.is-active {
+      .tab-category-list {
+        &__button {
+          color: $color-sub-03;
+
+          @include rwd(bpSp) {
+            &::before {
+              position: absolute;
+              top: 6px;
+              left: 0;
+              content: "";
+              width: 6px;
+              height: 6px;
+              border-radius: 1000px;
+              background: $color-sub-03;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.tab-contents-list {
+  &__list {
+    border-bottom: solid 2px $color-black;
+
+    &:nth-of-type(n+2) {
+      @include rwd(bpSp, below) {
+        .tab-contents-list {
+          &__anchor {
+            padding-top: 10px;
+          }
+        }
+      }
+
+      @include rwd(bpSp) {
+        .tab-contents-list {
+          &__anchor {
+            padding-top: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  &__date {
+    @include rwd(bpSp, below) {
+      margin-bottom: 4px;
+    }
+  }
+
+  &__anchor {
+    display: block;
+    color: $color-black;
+    transition: .3s;
+
+    @include rwd(bpSp, below) {
+      padding-bottom: 10px;
+    }
+
+    @include rwd(bpSp) {
+      display: flex;
+      gap: 40px;
+      padding-bottom: 14px;
+    }
+
+    &:hover {
+      color: $color-main;
+    }
+  }
+
+  &__content-text {
+    font-weight: $weight-medium;
+  }
+}

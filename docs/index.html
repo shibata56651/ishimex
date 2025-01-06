@@ -11,7 +11,7 @@
 <body>
   <!--#include virtual="/common/include/header.html" -->
 
-  <main class="str-contents-wrapper js-tabindex-target">
+  <main class="str-contents-wrapper str-contents-wrapper--top js-tabindex-target">
     <section class="splide" aria-label="トップページのカルーセル">
         <div class="splide__track">
           <ul class="splide__list">
@@ -35,59 +35,28 @@
         <span class="splide__toggle__play">Play</span>
         <span class="splide__toggle__pause">Pause</span>
       </button>
-
-      <div class="lead-contents">
-        <span class="lead-top-em"><em>より新しく、より早く</em></span>
-        <span class="lead-top-text">最適ソリューションとして提供することに<br>挑戦しています。</span>
-      </div><!-- /.lead-contents -->
     </section>
 
-    <section data-fade-kind="fade" class="section__base js-fade-roots">
-      <div class="top-company-lyt">
-        <div class="top-company-lyt__img-content">
-          <img src="/images/top/top-company.jpg" alt="">
-        </div><!-- /.top-company-lyt__img-content -->
-        <div class="top-company-lyt__text-content">
-          <h2 class="top__hdg">企業情報<span class="top__hdg--en">company</span></h2>
-          <p class="top-company-lyt__text">FA設備、機械の通信システムを含めたシステム設計およびパソコン、マイコン制御、シーケンス制御から制御版、装置、プリント基盤の実装組み立て並びに現地据付工事から調整まで、電装設備工事のトータルエンジニアリングに対応いています。</p>
-
-          <a href="/company/" class="top-company-lyt__link"><span class="top-company-lyt__link-text">企業情報について</span></a>
-        </div><!-- /.top-company-lyt__text-content -->
-      </div><!-- /.top-company -->
+    <section data-fade-kind="fade" class="section__lead js-fade-roots">
+        <div class="lead-contents">
+          <span class="lead-top-em"><em>より新しく、より早く</em></span>
+          <span class="lead-top-text">最適ソリューションとして提供することに<br>挑戦しています。</span>
+        </div><!-- /.lead-contents -->
     </section>
 
     <section data-fade-kind="fade" class="section__base js-fade-roots">
       <h2 class="top__hdg">お知らせ<span class="top__hdg--en">news</span></h2>
 
       <div class="news-desc">
-        <dl>
-          <dt>
-            <div class="news-category-list">
-              <ul class="news-category-list__wrap" role="tablist">
-                <li id="tab-1" class="news-category-list__list js-tab-target is-active"><button class="news-category-list__button" type="button" role="tab" aria-controls="tabpanel-1">プレリリース</button></li>
-                <li id="tab-2" class="news-category-list__list js-tab-target"><button class="news-category-list__button" type="button" role="tab" aria-controls="tabpanel-2">企業情報</button></li>
-                <li id="tab-3" class="news-category-list__list js-tab-target"><button class="news-category-list__button" type="button" role="tab" aria-controls="tabpanel-3">イベント情報</button></li>
-              </ul>
-            </div><!-- /.news-category-list -->
-          </dt>
-          <dd>
-            <div id="tabpanel-1" class="js-tab-news-items is-active" role="tabpanel" aria-labelledby="tab-1">
-              <div class="news-contents-list js-data-content" data-display-length="5"></div><!-- /.news-contents-list -->
-            </div><!-- /#tabpanel-1 -->
-            <div id="tabpanel-2" class="js-tab-news-items" role="tabpanel" aria-labelledby="tab-2">
-              <div class="news-contents-list js-data-content" data-display-length="5"></div><!-- /.news-contents-list -->
-            </div><!-- /#tabpanel-2 -->
-            <div id="tabpanel-3" class="js-tab-news-items" role="tabpanel" aria-labelledby="tab-3">
-              <div class="news-contents-list js-data-content" data-display-length="5"></div><!-- /.news-contents-list -->
-            </div><!-- /#tabpanel-3 -->
-          </dd>
-        </dl>
+          <div>
+            <div class="news-contents-list js-data-content" data-display-category="all" data-display-length="5"></div><!-- /.news-contents-list -->
+          </div>
       </div><!-- /.news-desc -->
 
       <span class="normal-link"><a href="/news/" class="normal-link__link"><span class="normal-link__link-text">お知らせ一覧へ</span></a></span>
     </section>
 
-    <section data-fade-kind="fade" class="section__base js-fade-roots">
+    <section data-fade-kind="fade" class="section__base js-fade-roots" id="anchor-01">
       <h2 class="top__hdg">サービス・製品<span class="top__hdg--en">products</span></h2>
 
       <p>当社では、シーケンス設計・機構設計・回路設計・アートワーク設計・ソフト開発・を行う開発部・技術部と基板実装・配線・組立を行う生産部があります。社内設計したものを同時に社内加工してしているので製造しやすさを考慮した効果的な設計・組立が行われています。社内で連携しているので外部に情報が漏れることもありません。</p>
@@ -95,7 +64,7 @@
       <div class="top-service-list">
         <ul class="top-service-list__wrap">
           <li class="top-service-list__list">
-            <a class="top-service-list__link" href="/products/#anchor-01">
+            <a class="top-service-list__link" href="/products/#tab-01">
               <span class="top-service-list__img-wrap">
                 <img class="top-service-list__img" src="/images/icon/top-icon-01.png" alt="">
               </span>
@@ -103,7 +72,7 @@
             </a>
           </li>
           <li class="top-service-list__list">
-            <a class="top-service-list__link" href="/products/#anchor-02">
+            <a class="top-service-list__link" href="/products/#tab-02">
               <span class="top-service-list__img-wrap">
                 <img class="top-service-list__img" src="/images/icon/top-icon-02.png" alt="">
               </span>
@@ -111,7 +80,7 @@
             </a>
           </li>
           <li class="top-service-list__list">
-            <a class="top-service-list__link" href="/products/#anchor-03">
+            <a class="top-service-list__link" href="/products/#tab-03">
               <span class="top-service-list__img-wrap">
                 <img class="top-service-list__img" src="/images/icon/top-icon-03.png" alt="">
               </span>
@@ -119,7 +88,7 @@
             </a>
           </li>
           <li class="top-service-list__list">
-            <a class="top-service-list__link" href="/products/#anchor-04">
+            <a class="top-service-list__link" href="/products/#tab-04">
               <span class="top-service-list__img-wrap">
                 <img class="top-service-list__img" src="/images/icon/top-icon-04.png" alt="">
               </span>
@@ -129,46 +98,8 @@
         </ul>
       </div><!-- /.top-service-list -->
 
-      <div class="top-pickup-contents">
-        <div class="top-pickup-contents__items">
-          <a class="top-pickup-contents__link" href="/products/delivery-achievement/">
-            <h3 class="top-pickup-contents__hdg">納入実績</h3>
-            <p>検査・計測機器、紙工機械・印刷機械、繊維機械等の機器を納入しております。</p>
-          </a>
-        </div><!-- /.top-pickup-content -->
-
-        <div class="top-pickup-contents__items">
-          <a class="top-pickup-contents__link" href="/products/system/">
-            <h3 class="top-pickup-contents__hdg">生産体制について</h3>
-            <p>あらゆる表面実装部品基板の試作・量産に対しての生産体制が整っており、はんだ印刷機・実装機・リフロー炉を1ライン構成として個々の特徴を生かした実装配備が可能となっています。</p>
-          </a>
-        </div><!-- /.top-pickup-content -->
-      </div><!-- /.top-pickup-contents -->
-
       <span class="normal-link"><a href="/products/" class="normal-link__link"><span class="normal-link__link-text">サービス・製品ページへ</span></a></span>
     </section>
-
-    <section data-fade-kind="fade" class="section__base js-fade-roots">
-      <h2 class="top__hdg">部門別設備<span class="top__hdg--en">equipment</span></h2>
-
-      <p>自動はんだ付装置 HC40-32LT（㈱タムラ製作所）、鉛フリー対応リフロー装置 ECOR-4099NA（㈱弘輝テック）、FM型一軸超高感度磁界測定器 FM-1010A(MTI)等の設備を有しております。</p>
-
-      <h3 class="top__hdg-dept">生産部</h3>
-
-      <!--#include virtual="/common/include/equipment-card-list/production-01.html" -->
-
-      <h3 class="top__hdg-dept">開発部</h3>
-
-      <!--#include virtual="/common/include/equipment-card-list/development.html" -->
-
-      <h3 class="top__hdg-dept">技術部</h3>
-
-      <!--#include virtual="/common/include/equipment-card-list/technology.html" -->
-
-      <span class="normal-link"><a href="/equipment/" class="normal-link__link"><span class="normal-link__link-text">部門別設備ページへ</span></a></span>
-    </section>
-
-    <!--#include virtual="/common/include/contact.html" -->
   </main>
 
   <!--#include virtual="/common/include/footer.html" -->

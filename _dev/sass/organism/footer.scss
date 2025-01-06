@@ -72,10 +72,16 @@
     }
 
     > dt {
+      @include rwd(bpSp) {
+        padding-right: 16px;
+      }
+    }
+
+    > dd {
       position: relative;
 
       @include rwd(bpSp) {
-        padding-right: 16px;
+        padding-left: 16px;
       }
 
       &::before {
@@ -84,23 +90,23 @@
         @include rwd(bpSp) {
           position: absolute;
           top: 4px;
-          right: 0;
+          left: 0;
           width: 1px;
           height: 20px;
           background: $color-gray;
         }
       }
     }
-
-    > dd {
-      @include rwd(bpSp) {
-        padding-left: 16px;
-      }
-    }
   }
 
   &__contents-link {
     color: $color-black;
+
+    &--not-dd {
+      &::before {
+        display: none;
+      }
+    }
 
     @include rwd(bpSp, below) {
       position: relative;
@@ -170,7 +176,9 @@
     &:nth-of-type(n+2) {
       .footer-list {
         &__link {
-          border-top: solid 1px $color-gray-02;
+          @include rwd(bpSp, below) {
+            border-top: solid 1px $color-gray-02;
+          }
         }
       }
     }

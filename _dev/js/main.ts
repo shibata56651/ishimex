@@ -32,7 +32,7 @@ import "scroll-behavior-polyfill";
       type: 'loop',
       autoplay: true,
       pauseOnHover: false,
-      interval: 10000,
+      interval: 7000,
     }).mount();
   }
 
@@ -240,7 +240,7 @@ import "scroll-behavior-polyfill";
     const displayTarget: NodeListOf<HTMLButtonElement> = doc.querySelectorAll('.js-tab-news-items');
 
     for (const item of tabRoots) {
-      new tab(item, tabRoots, displayTarget);
+      new tab(item, tabRoots, urlHash, displayTarget);
     }
   }
 
@@ -377,7 +377,12 @@ import "scroll-behavior-polyfill";
     let num = 0;
 
     for (const item of xmlRoots) {
-      num += 1;
+      const category = item.dataset.displayCategory;
+      if (category === 'all' && xmlRoots.length === 1) {
+        num = 99;
+      } else {
+        num += 1;
+      }
       new xmlGetData(item, num);
     }
   }

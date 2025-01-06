@@ -141,13 +141,13 @@
 }
 
 @media print, screen and (max-width: 768px) {
-  .list-unit {
-    margin-bottom: 36px;
+  .list-unit + * {
+    margin-top: 36px;
   }
 }
 @media print, screen and (min-width: 769px) {
-  .list-unit {
-    margin-bottom: 60px;
+  .list-unit + * {
+    margin-top: 60px;
   }
 }
 .list-unit__list:nth-of-type(n+2) {
@@ -299,5 +299,20 @@
 @media print, screen and (min-width: 769px) {
   .list-annotation__unit {
     margin-right: 8px;
+  }
+}
+
+.list-column {
+  display: flex;
+  flex-wrap: wrap;
+}
+@media print, screen and (max-width: 768px) {
+  .list-column {
+    margin-bottom: 15px;
+  }
+}
+@media print, screen and (min-width: 769px) {
+  .list-column {
+    margin-bottom: 30px;
   }
 }

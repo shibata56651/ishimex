@@ -62,7 +62,7 @@ export class xmlGetData {
           const id = data.querySelector('id');
           const maxLength = this.elements.dataset.displayLength;
 
-          if (maxLength ? (displayCount < Number(maxLength) && this.count === Number(id?.innerHTML)) : (this.count === Number(id?.innerHTML))) {
+          if (maxLength ? this.count === 99 ? (displayCount < 3) : (displayCount < Number(maxLength) && this.count === Number(id?.innerHTML)) : (this.count === Number(id?.innerHTML))) {
             const listingDate = data.querySelector('listingDate');
             const limitDate = data.querySelector('limitDate');
             const anchor = data.querySelector('anchor');

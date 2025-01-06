@@ -12,9 +12,17 @@
 }
 
 .header-contents {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  &--logo-only {
+    height: 100%;
+    padding: 0 16px;
+    align-content: center;
+  }
+
+  &:not(.header-contents--logo-only) {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
   @include rwd(bpSp) {
     padding: 8px 16px;
@@ -23,12 +31,20 @@
 
 .header-logo {
   @include rwd(bpSp, below) {
+    &:not(.header-contents--logo-only) {
+      width: 130px;
+    }
+
     > h1 {
       height: 20px;
     }
   }
 
   @include rwd(bpSp) {
+    &:not(.header-contents--logo-only) {
+      width: 220px;
+    }
+
     > h1 {
       height: 38px;
     }

@@ -20,7 +20,7 @@ export class SmoothScroll {
   constructor(element: HTMLAnchorElement | undefined, urlHash: string, options = {}) {
     const defaultOptions = {
       offset: 0,
-      HeaderHeight: 134
+      HeaderHeight: 53
     };
 
     this.o = Object.assign(defaultOptions, options);
@@ -88,9 +88,9 @@ export class SmoothScroll {
    */
   loadHandler() {
     if (document.body.clientWidth <= 1170) {
-      this.o.HeaderHeight = 87;
+      this.o.HeaderHeight = 20;
     } else {
-      this.o.HeaderHeight = 134;
+      this.o.HeaderHeight = 53;
     }
 
     console.log(this.scrollTarget)

@@ -186,6 +186,116 @@
   }
 }
 
+.lyt-column-recruit {
+  position: relative;
+  display: flex;
+  justify-content: center;
+
+  + .lyt-column-recruit {
+    &::before {
+      position: absolute;
+      width: 100%;
+      height: 1px;
+      content: "";
+      background: $color-gray-03;
+      left: 0;
+
+      @include rwd(bpSp, below) {
+        top: -13px;
+      }
+
+      @include rwd(bpSp) {
+        top: -30px;
+      }
+    }
+  }
+
+  &--reverse {
+    @include rwd(bpSp, below) {
+      flex-direction: column-reverse;
+    }
+
+    @include rwd(bpSp) {
+      flex-direction: row-reverse;
+    }
+  }
+
+  @include rwd(bpSp, below) {
+    flex-direction: column-reverse;
+    margin-top: 36px;
+
+    + * {
+      margin-top: 36px;
+    }
+  }
+
+  @include rwd(bpSp) {
+    max-width: 1400px;
+    width: 100%;
+    gap: 38px;
+
+    + * {
+      margin-top: 60px;
+    }
+  }
+
+  &__title {
+    font-weight: $weight-medium;
+  }
+
+  &__hdg {
+    + * {
+      margin-top: 10px;
+    }
+
+    @include rwd(bpSp, below) {
+      font-size: 1.4rem;
+    }
+
+    @include rwd(bpSp) {
+      font-size: 1.8rem;
+    }
+  }
+
+  &__data {
+    display: block;
+    font-size: 1.4rem;
+  }
+
+  &__group {
+    @include rwd(bpSp, below) {
+      &:first-of-type {
+        margin-top: 24px;
+      }
+    }
+
+    .lyt-img {
+      @include rwd(bpSp, below) {
+        margin: 0 auto;
+      }
+
+      @include rwd(bpSp) {
+        width: clamp(316px, -1.82rem + 44.94vw, 600px);
+        aspect-ratio: 16 / 9;
+      }
+    }
+  }
+
+  &__date {
+    display: block;
+    font-size: 1.3rem;
+  }
+
+  &__assign {
+    display: block;
+    font-size: 1.4rem;
+  }
+
+  &__text {
+    margin-top: 18px;
+  }
+}
+
 .lyt-map-detail {
   display: flex;
   justify-content: center;
@@ -257,8 +367,4 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-
-  &__target {
-    width: 100%;
-  }
 }
