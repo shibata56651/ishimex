@@ -53,7 +53,7 @@
     "stylelint": "^14.10.0",
     "stylelint-config-standard-scss": "^5.0.0",
     "stylelint-scss": "^4.3.0",
-    "swiper": "^6.8.4",
+    "swiper": "^12.1.2",
     "terser-webpack-plugin": "^5.2.4",
     "ts-loader": "^9.2.8",
     "webpack": "^5.105.4",
